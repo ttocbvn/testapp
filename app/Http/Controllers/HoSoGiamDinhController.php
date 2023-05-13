@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HoSoGiamDinh;
 
 class HoSoGiamDinhController extends Controller
 {
@@ -14,7 +15,8 @@ class HoSoGiamDinhController extends Controller
     public function index()
     {
         //
-        return view('hosogiamdinh.index');
+        $hosogd = HoSoGiamDinh::orderBy('id_hs', 'DESC')->paginate(10);
+        return view('hosogiamdinh.index',compact('hosogd'));
     }
 
     /**

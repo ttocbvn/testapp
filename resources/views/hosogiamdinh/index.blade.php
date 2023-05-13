@@ -31,117 +31,38 @@
                             <table class="table table-row-dashed table-row-gray-300 gy-7">
                                 <thead>
                                     <tr class="fw-bolder fs-6 text-gray-800">
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                        <th>Salary</th>
-                                        <th>Salary</th>
-                                        <th>Salary</th>
+                                        <th>Số Quyết định trưng cầu</th>
+                                        <th>Ngày quyết định trưng cầu</th>
+                                        <th>Người giao</th>
+                                        <th>Người nhận</th>
+                                        <th>Đơn vị trưng cầu</th>
+                                        <th>Lĩnh vực giám định</th>
+                                        <th>Trạng thái hồ sơ</th>
+                                        <th>Ngày nhận</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                        <td>$170,750</td>
-                                    </tr>
+                                  @foreach ($hosogd as $hs)
+                                     <tr>
+                                        <td>{{$hs->soqd}}</td>
+                                        <td>{{date('d/m/Y', strtotime($hs->ngayqd));}}</td>
+                                        <td>{{$hs->nguoigiao}}</td>
+                                        <td>{{$hs->nguoinhan}}</td>
+                                        <td>{{$hs->donvitrungcau}}</td>
+                                        <td>{{$hs->linhvucgiamdinh}}</td>
+                                        <td>@if ($hs->trangthaihoso == 'Đã tiếp nhận')
+                                            <span class="badge badge-light-primary">{{$hs->trangthaihoso}}</span>
+                                        @elseif ($hs->trangthaihoso == 'Đã kết thúc')
+                                        <span class="badge badge-light-success">{{$hs->trangthaihoso}}</span>
+                                        @else
+                                        <span class="badge badge-light-info">Không có thông tin</span>
+                                        @endif
+                                        
+                                        </td>
+                                        <td>{{date('d/m/Y', strtotime($hs->ngaynhan));}}</td>                                                                                
+                                    </tr>  
+                                  @endforeach
+                                                                      
                                 </tbody>
                             </table>
                         </div>
