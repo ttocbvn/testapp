@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\HoSoGiamDinh;
-
+use Carbon\Carbon;
 class HoSoGiamDinhController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class HoSoGiamDinhController extends Controller
     public function index()
     {
         //
-        $hosogd = HoSoGiamDinh::orderBy('id_hs', 'DESC')->paginate(10);
+        $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->paginate(10);
         return view('hosogiamdinh.index',compact('hosogd'));
     }
 
@@ -39,6 +39,25 @@ class HoSoGiamDinhController extends Controller
     public function store(Request $request)
     {
         //
+        $hoso = new HoSoGiamDinh();
+        $hoso->soqd = $request->soqd;
+        $hoso->ngayqd = $request->ngayqd;
+        $hoso->nguoigiao = $request->nguoigiao;
+        $hoso->chucvunguoigiao = $request->chucvunguoigiao;
+        $hoso->nguoinhan = $request->nguoinhan;
+        $hoso->chucvunguoinhan = $request->chucvunguoinhan;
+        $hoso->donvitrungcau = $request->donvitrungcau;
+        $hoso->nguoikyqd = $request->nguoikyqd;
+        $hoso->soluongmaugiamdinh = $request->soluongmaugiamdinh;
+        $hoso->linhvucgiamdinh = $request->linhvucgiamdinh;
+        $hoso->tinhtrangdoituonggiamdinh = $request->tinhtrangdoituonggiamdinh;
+        $hoso->trangthaihoso = 'Đã tiếp nhận';
+        $mytime = Carbon::now();
+        $hoso->ngaynhan = $mytime;
+        $hoso->save();
+        return redirect()->route('ho-so-giam-dinh.index')->with('status','Thêm thành công');
+        
+
     }
 
     /**
@@ -61,6 +80,8 @@ class HoSoGiamDinhController extends Controller
     public function edit($id)
     {
         //
+        $hoso = HoSoGiamDinh::find($id);
+        return view('hosogiamdinh.suatiepnhan',compact('hoso'));
     }
 
     /**
@@ -73,6 +94,23 @@ class HoSoGiamDinhController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $hoso = HoSoGiamDinh::find($id);
+        $hoso->soqd = $request->soqd;
+        $hoso->ngayqd = $request->ngayqd;
+        $hoso->nguoigiao = $request->nguoigiao;
+        $hoso->chucvunguoigiao = $request->chucvunguoigiao;
+        $hoso->nguoinhan = $request->nguoinhan;
+        $hoso->chucvunguoinhan = $request->chucvunguoinhan;
+        $hoso->donvitrungcau = $request->donvitrungcau;
+        $hoso->nguoikyqd = $request->nguoikyqd;
+        $hoso->soluongmaugiamdinh = $request->soluongmaugiamdinh;
+        $hoso->linhvucgiamdinh = $request->linhvucgiamdinh;
+        $hoso->tinhtrangdoituonggiamdinh = $request->tinhtrangdoituonggiamdinh;
+        $hoso->trangthaihoso = $request->trangthaihoso;
+        // $mytime = Carbon::now();
+        // $hoso->ngaynhan = $mytime;
+        $hoso->save();
+        return redirect()->route('ho-so-giam-dinh.index')->with('status','Cập nhật thành công');
     }
 
     /**

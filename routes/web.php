@@ -17,5 +17,6 @@ use App\Http\Controllers\TaiKhoanController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('ho-so-giam-dinh/files',[HoSoGiamDinhController::class, 'WordCreate']);
 Route::resource('ho-so-giam-dinh', HoSoGiamDinhController::class);
 Route::resource('thong-tin-tai-khoan', TaiKhoanController::class);

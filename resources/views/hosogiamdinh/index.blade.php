@@ -19,8 +19,13 @@
                       <!--begin::Header-->
                       <div class="card-header border-0">
                         <h3 class="card-title fw-bolder text-dark">
-                          Danh sách hồ sơ giám định                          
-                        </h3>
+                          Danh sách hồ sơ giám định                                                
+                        </h3>                        
+                        @if (session('status'))
+                        <span class="card-title fw-bolder text-dark alert alert-success">
+                            {{ session('status') }}
+                        </span>
+                        @endif
                         <p class="p-5"><a href="{{route('ho-so-giam-dinh.create')}}" class="btn btn-light-primary">Thêm mới hồ sơ</a></p>
                        
                       </div>
@@ -44,7 +49,7 @@
                                 <tbody>
                                   @foreach ($hosogd as $hs)
                                      <tr>
-                                        <td>{{$hs->soqd}}</td>
+                                        <td><a href="{{route('ho-so-giam-dinh.edit', $hs->id)}}"  rel="noopener noreferrer">{{$hs->soqd}}</td></a>
                                         <td>{{date('d/m/Y', strtotime($hs->ngayqd));}}</td>
                                         <td>{{$hs->nguoigiao}}</td>
                                         <td>{{$hs->nguoinhan}}</td>
