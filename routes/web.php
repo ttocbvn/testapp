@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HoSoGiamDinhController;
+use App\Http\Controllers\TaiKhoanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('ho-so-giam-dinh', HoSoGiamDinhController::class);
+Route::resource('thong-tin-tai-khoan', TaiKhoanController::class);
