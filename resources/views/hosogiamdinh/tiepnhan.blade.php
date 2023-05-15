@@ -19,7 +19,7 @@
                       <!--begin::Header-->
                       <div class="card-header border-0">
                         <h3 class="card-title fw-bolder text-dark">
-                          Người giao nhận quyết định trưng cầu giám định
+                          Giao nhận quyết định trưng cầu giám định
                         </h3>
                         <p class="p-5"><a href="{{route('ho-so-giam-dinh.index')}}" class="btn btn-light-primary">Quản lý hồ sơ</a></p>
                       </div>
