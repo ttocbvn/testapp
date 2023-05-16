@@ -21,7 +21,7 @@
                         <h3 class="card-title fw-bolder text-dark">
                           Giao nhận quyết định trưng cầu giám định
                         </h3>
-                        <p class="p-5"><a href="{{route('ho-so-giam-dinh.index')}}" class="btn btn-light-primary">Quản lý hồ sơ</a></p>
+                        <p class="p-5 card-toolbar"><a href="{{route('ho-so-giam-dinh.index')}}" class="btn btn-light-primary">Quản lý hồ sơ</a></p>
                       </div>
                       <!--end::Header-->
                       <!--begin::Body-->
@@ -306,7 +306,7 @@
                             <div class="row">
                               <div class="col-lg-6">
                                 <button type="submit" class="btn btn-primary mr-2" name="save">Lưu</button>
-                                <button type="submit" formaction="/url2" class="btn btn-primary mr-2" name="download">Tải file</button>
+                                <button type="submit" formaction="{{route('WordCreate')}}" class="btn btn-primary mr-2" name="download">Tải file</button>
                                 <button type="reset" class="btn btn-secondary">Cancel</button>
                               </div>														
                             </div>

@@ -500,7 +500,7 @@
                             <div class="row">
                               <div class="col-lg-6">
                                 <button type="submit" class="btn btn-primary mr-2" name="save">Cập nhật</button>
-                                <button type="submit" formaction="/url2" class="btn btn-primary mr-2" name="download">Tải file</button>
+                                <button type="submit" formaction="{{route('WordCreate')}}" class="btn btn-primary mr-2" name="download">Tải file</button>
                                 <button type="reset" class="btn btn-secondary">Cancel</button>
                               </div>														
                             </div>

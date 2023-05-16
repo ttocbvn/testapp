@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\HoSoGiamDinh;
 use Carbon\Carbon;
+
+
 class HoSoGiamDinhController extends Controller
 {
     /**
@@ -123,4 +125,55 @@ class HoSoGiamDinhController extends Controller
     {
         //
     }
+
+    public function WordCreate(Request $request)
+    {
+       
+       
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $giohientai = date('H'); 
+        $phuthientai = date('i');
+        $phutketthuc = $phuthientai+15;
+        if($phutketthuc>60){
+            $phutketthuc = $phutketthuc - 10;
+        } 
+        $ngayhientai = date('d'); 
+        $thanghientai = date('m'); 
+        $namhientai = date('Y'); 
+        $soqd = $request->soqd;
+        $date=date_create($request->ngayqd);
+        $ngayqd= date_format($date,'d/m/Y');        
+        $donvitrungcau = $request->donvitrungcau;
+        $nguoigiao = $request->nguoigiao;
+        $nguoinhan = $request->nguoinhan;
+        $chucvunguoigiao = $request->chucvunguoigiao;
+        $chucvunguoinhan = $request->chucvunguoinhan;
+        $tinhtrangdoituonggiamdinh = $request->tinhtrangdoituonggiamdinh;
+
+        //Gắn thông tin sang file mẫu
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('filemau.docx');
+        $templateProcessor->setValue('giohientai', $giohientai);
+        $templateProcessor->setValue('phuthientai', $phuthientai);
+        $templateProcessor->setValue('ngayhientai', $ngayhientai);
+        $templateProcessor->setValue('thanghientai', $thanghientai);
+        $templateProcessor->setValue('namhientai', $namhientai);
+        $templateProcessor->setValue('soqd', $soqd);
+        $templateProcessor->setValue('ngayqd', $ngayqd);
+        $templateProcessor->setValue('donvitrungcau', $donvitrungcau);
+        $templateProcessor->setValue('nguoigiao', $nguoigiao);
+        $templateProcessor->setValue('chucvunguoigiao', $chucvunguoigiao);
+        $templateProcessor->setValue('nguoinhan', $nguoinhan);
+        $templateProcessor->setValue('chucvunguoinhan', $chucvunguoinhan);
+      //  $templateProcessor->setValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh);
+        $templateProcessor->setValue('phutketthuc', $phutketthuc);        
+        $templateProcessor->setHtmlBlockValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh); 
+        //tạo fie mới       
+        $pathToSave = 'ketqua.docx';
+        $templateProcessor->saveAs($pathToSave);
+        
+        $name = 'Giao nhan.docx';
+        return response()->download($pathToSave, $name);
+
+    }
+
 }
