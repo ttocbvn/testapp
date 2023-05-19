@@ -524,3 +524,26 @@
           <!--end::Content-->
           <!-- Phần cuối trang nội dung -->
 @endsection
+@push('custom-scripts')
+<script src="{{ asset('assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
+<script>
+  ClassicEditor
+.create(document.querySelector('#kt_docs_ckeditor_classic'),{
+  fontFamily: {
+        options: [
+          "Times New Roman", 'Times', 'serif',
+        ],
+        toolbar: [
+        'heading', 'bulletedList', 'numberedList', 'fontFamily', 'undo', 'redo'
+        ]
+  }
+})
+.then(editor => {
+    console.log(editor);
+   
+})
+.catch(error => {
+    console.error(error);
+});
+</script>
+@endpush

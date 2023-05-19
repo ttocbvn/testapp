@@ -478,7 +478,7 @@ License: For each use you must have a valid license purchased only from above li
                 <a href="../../demo1/dist/index.html" class="d-lg-none">
                   <img
                     alt="Logo"
-                    src="assets/media/logos/logo-3.svg"
+                    src="{{asset('assets/media/logos/logo-3.svg')}}"
                     class="h-30px" />
                 </a>
               </div>
@@ -813,27 +813,8 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('assets/js/custom/apps/chat/chat.js')}}"></script>
     <script src="{{ asset('assets/js/custom/modals/create-app.js')}}"></script>
     <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js')}}"></script>
-    <script src="{{ asset('assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
-    <script>
-      ClassicEditor
-    .create(document.querySelector('#kt_docs_ckeditor_classic'),{
-      fontFamily: {
-            options: [
-              "Times New Roman", 'Times', 'serif',
-            ],
-            toolbar: [
-            'heading', 'bulletedList', 'numberedList', 'fontFamily', 'undo', 'redo'
-            ]
-      }
-    })
-    .then(editor => {
-        console.log(editor);
-       
-    })
-    .catch(error => {
-        console.error(error);
-    });
-  </script>
+
+    @stack('custom-scripts')
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 
