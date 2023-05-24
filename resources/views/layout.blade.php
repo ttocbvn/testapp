@@ -743,6 +743,7 @@ License: For each use you must have a valid license purchased only from above li
 
          @yield('taomoihoso')
          @yield('thongtintaikhoan')
+         @yield('dangkytaikhoan')
 
           <!--begin::Footer-->
           <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">

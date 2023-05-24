@@ -70,6 +70,7 @@
                                                                       
                                 </tbody>
                             </table>
+                            {!! $hosogd->links() !!}
                         </div>
                         
                       <!--end::Body-->

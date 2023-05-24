@@ -21,6 +21,11 @@
                         <h3 class="card-title fw-bolder text-dark">
                           Người giao nhận quyết định trưng cầu giám định
                         </h3>
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            Vui lòng kiểm tra lại dữ liệu
+                        </div>
+                    @endif
                         <p class="p-5"><a href="{{route('ho-so-giam-dinh.index')}}" class="btn btn-light-primary">Quản lý hồ sơ</a></p>
                       </div>
                       <!--end::Header-->
@@ -34,8 +39,8 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Số quyết định trưng cầu: (*):
+                                ><h6 class="text-dark required">
+                                  Số quyết định trưng cầu:
                                 </h6></label
                               >
                               <input
@@ -47,6 +52,9 @@
                               <span class="form-text text-muted"
                                 >Điền đẩy đủ theo quyết định</span
                               >
+                              @error('soqd')
+                                  <p><span style="color: red">{{$message}}</span></p>
+                              @enderror
                             </div>
                           </div>
                           <!-- Kết thúc cột trái -->
@@ -54,8 +62,8 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Ngày quyết định (*):
+                                ><h6 class="text-dark required">
+                                  Ngày quyết định:
                                 </h6></label
                               >
                               <input
@@ -67,6 +75,9 @@
                               <span class="form-text text-muted"
                                 >Định dạng: ngày/tháng/năm</span
                               >
+                              @error('ngayqd')
+                                  <p><span style="color: red">{{$message}}</span></p>
+                              @enderror
                             </div>
                           </div>
                           <!-- Kết thúc cột phải -->
@@ -78,8 +89,8 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Người giao: (*):
+                                ><h6 class="text-dark required">
+                                  Người giao:
                                 </h6></label
                               >
                               <input
@@ -91,6 +102,9 @@
                               <span class="form-text text-muted"
                                 >Điền đầy đủ Họ và tên (không viết tắt)</span
                               >
+                              @error('nguoigiao')
+                                  <p><span style="color: red">{{$message}}</span></p>
+                              @enderror
                             </div>
                           </div>
                           <!-- Kết thúc cột trái -->
@@ -98,58 +112,24 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Chức vụ người giao (*):
+                                ><h6 class="text-dark required">
+                                  Chức vụ người giao:
                                 </h6></label
                               >
                               <select
                                 class="form-select"
                                 id="exampleSelect1"
                                 name="chucvunguoigiao">
-                                @if ($hoso->chucvunguoigiao == "Điều tra viên")
-                                    <option selected value="Điều tra viên">Điều tra viên</option>
-                                    <option value="Cán bộ">Cán bộ</option>
-                                    <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                    <option value="Đội trưởng">Đội trưởng</option>
-                                    <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                    <option value="Trưởng phòng">Trưởng phòng</option>
-                                @elseif ($hoso->chucvunguoigiao == "Cán bộ")
-                                    <option value="Điều tra viên">Điều tra viên</option>
-                                    <option selected value="Cán bộ">Cán bộ</option>
-                                    <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                    <option value="Đội trưởng">Đội trưởng</option>
-                                    <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                    <option value="Trưởng phòng">Trưởng phòng</option>
-                                @elseif ($hoso->chucvunguoigiao == "Phó đội trưởng")
-                                    <option value="Điều tra viên">Điều tra viên</option>
-                                    <option value="Cán bộ">Cán bộ</option>
-                                    <option selected value="Phó đội trưởng">Phó đội trưởng</option>
-                                    <option value="Đội trưởng">Đội trưởng</option>
-                                    <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                    <option value="Trưởng phòng">Trưởng phòng</option>  
-                                @elseif ($hoso->chucvunguoigiao == "Đội trưởng")
-                                    <option value="Điều tra viên">Điều tra viên</option>
-                                    <option value="Cán bộ">Cán bộ</option>
-                                    <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                    <option selected value="Đội trưởng">Đội trưởng</option>
-                                    <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                    <option value="Trưởng phòng">Trưởng phòng</option>
-                                @elseif ($hoso->chucvunguoigiao == "Phó trưởng phòng")
-                                    <option value="Điều tra viên">Điều tra viên</option>
-                                    <option value="Cán bộ">Cán bộ</option>
-                                    <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                    <option value="Đội trưởng">Đội trưởng</option>
-                                    <option selected value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                    <option value="Trưởng phòng">Trưởng phòng</option>
-                                @elseif ($hoso->chucvunguoigiao == "Trưởng phòng")
-                                    <option value="Điều tra viên">Điều tra viên</option>
-                                    <option value="Cán bộ">Cán bộ</option>
-                                    <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                    <option value="Đội trưởng">Đội trưởng</option>
-                                    <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                    <option selected value="Trưởng phòng">Trưởng phòng</option>
-                                @endif
+                                @php
+                                   $mangchucvu = ['Điều tra viên','Cán bộ','Phó đội trưởng','Đội trưởng','Phó trưởng phòng','Trưởng phòng']; 
+                                @endphp
                                 
+                                @foreach($mangchucvu as $item)
+                                    <option value="{{ $item }}" @if($hoso->chucvunguoigiao=== $item) selected='selected' @endif> {{ $item }}</option>
+                                @endforeach                               
+                                @error('chucvunguoigiao')
+                                  <p><span style="color: red">{{$message}}</span></p>
+                              @enderror
                               </select>
                             </div>
                           </div>
@@ -162,8 +142,8 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Người nhận: (*):
+                                ><h6 class="text-dark required">
+                                  Người nhận:
                                 </h6></label
                               >
                               <input
@@ -182,57 +162,21 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Chức vụ người nhận (*):
+                                ><h6 class="text-dark required">
+                                  Chức vụ người nhận:
                                 </h6></label
                               >
                               <select
                                 class="form-select"
                                 id="exampleSelect1"
                                 name="chucvunguoinhan">
-                            @if ($hoso->chucvunguoinhan == "Giám định viên")
-                                <option selected value="Giám định viên">Giám định viên</option>
-                                <option value="Cán bộ">Cán bộ</option>
-                                <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                <option value="Đội trưởng">Đội trưởng</option>
-                                <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                <option value="Trưởng phòng">Trưởng phòng</option>
-                            @elseif ($hoso->chucvunguoinhan == "Cán bộ")
-                                <option value="Giám định viên">Giám định viên</option>
-                                <option selected value="Cán bộ">Cán bộ</option>
-                                <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                <option value="Đội trưởng">Đội trưởng</option>
-                                <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                <option value="Trưởng phòng">Trưởng phòng</option>
-                            @elseif ($hoso->chucvunguoinhan == "Phó đội trưởng")
-                                <option value="Giám định viên">Giám định viên</option>
-                                <option value="Cán bộ">Cán bộ</option>
-                                <option selected value="Phó đội trưởng">Phó đội trưởng</option>
-                                <option value="Đội trưởng">Đội trưởng</option>
-                                <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                <option value="Trưởng phòng">Trưởng phòng</option>  
-                            @elseif ($hoso->chucvunguoinhan == "Đội trưởng")
-                                <option value="Giám định viên">Giám định viên</option>
-                                <option value="Cán bộ">Cán bộ</option>
-                                <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                <option selected value="Đội trưởng">Đội trưởng</option>
-                                <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                <option value="Trưởng phòng">Trưởng phòng</option>
-                            @elseif ($hoso->chucvunguoinhan == "Phó trưởng phòng")
-                                <option value="Giám định viên">Giám định viên</option>
-                                <option value="Cán bộ">Cán bộ</option>
-                                <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                <option value="Đội trưởng">Đội trưởng</option>
-                                <option selected value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                <option value="Trưởng phòng">Trưởng phòng</option>
-                            @elseif ($hoso->chucvunguoinhan == "Trưởng phòng")
-                                <option value="Giám định viên">Giám định viên</option>
-                                <option value="Cán bộ">Cán bộ</option>
-                                <option value="Phó đội trưởng">Phó đội trưởng</option>
-                                <option value="Đội trưởng">Đội trưởng</option>
-                                <option value="Phó trưởng phòng">Phó trưởng phòng</option>
-                                <option selected value="Trưởng phòng">Trưởng phòng</option>
-                            @endif
+                                @php
+                                   $mangchucvu = ['Giám định viên','Cán bộ','Phó đội trưởng','Đội trưởng','Phó trưởng phòng','Trưởng phòng']; 
+                                @endphp
+                                
+                                @foreach($mangchucvu as $item)
+                                    <option value="{{ $item }}" @if($hoso->chucvunguoinhan=== $item) selected='selected' @endif> {{ $item }}</option>
+                                @endforeach                            
                               </select>
                             </div>
                           </div>
@@ -245,147 +189,32 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Cơ quan trưng cầu giám định: (*):
+                                ><h6 class="text-dark required">
+                                  Cơ quan trưng cầu giám định:
                                 </h6></label
                               >
                               <select
                                 class="form-select"
                                 id="exampleSelect1"
                                 name="donvitrungcau">
-                                @if ($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng")
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>                                    
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Hòa An")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @elseif($hoso->donvitrungcau == "Cơ quan Cảnh sát điều tra Công an huyện Thạch An")
-                                    <option value="Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng">Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng">Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hòa An"> Cơ quan Cảnh sát điều tra Công an huyện Hòa An</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng">Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình">Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc"> Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm">Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa">Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh">Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh</option>
-                                    <option value="Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang">Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang</option>
-                                    <option selected value="Cơ quan Cảnh sát điều tra Công an huyện Thạch An">Cơ quan Cảnh sát điều tra Công an huyện Thạch An</option>
-                                @endif                                
+                                @php
+                                   $mangchucvu = [
+                                      'Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng',
+                                      'Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Hòa An',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang',
+                                      'Cơ quan Cảnh sát điều tra Công an huyện Thạch An'
+                                    ]; 
+                                @endphp                                
+                                @foreach($mangchucvu as $item)
+                                    <option value="{{ $item }}" @if($hoso->donvitrungcau=== $item) selected='selected' @endif> {{ $item }}</option>
+                                @endforeach                                
                               </select>
                             </div>
                           </div>
@@ -394,8 +223,8 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Người ký quyết định (*):
+                                ><h6 class="text-dark required">
+                                  Người ký quyết định:
                                 </h6></label
                               >
                               <input
@@ -419,8 +248,8 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Số lượng mẫu giám định: (*):
+                                ><h6 class="text-dark required">
+                                  Số lượng mẫu giám định:
                                 </h6></label
                               >
                               <input class="form-control" type="number" name="soluongmaugiamdinh" min="1" value="{{$hoso->soluongmaugiamdinh}}" id="example-number-input" />
@@ -431,8 +260,8 @@
                           <div class="p-2 col-lg-6 col-sm-12 rounded">
                             <div class="p-2">
                               <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Lĩnh vực giám định (*):
+                                ><h6 class="text-dark required">
+                                  Lĩnh vực giám định:
                                 </h6></label
                               >
                               <select class="form-control" id="exampleSelect1" name="linhvucgiamdinh"> 
@@ -462,8 +291,8 @@
                             <div class="p-2 col-lg-6 col-sm-12 rounded">
                                 <div class="p-2">
                                     <label class="form-label"
-                                      ><h6 class="text-dark">
-                                        Tình trạng hồ sơ (*):
+                                      ><h6 class="text-dark required">
+                                        Tình trạng hồ sơ:
                                       </h6></label
                                     >
                                     <select class="form-select" id="exampleSelect1" name="trangthaihoso">
@@ -489,8 +318,8 @@
                         <!-- Block -->
                         <div class="row p-5">
                           <label class="form-label"
-                                ><h6 class="text-dark">
-                                  Tình trạng đối tượng giám định (*):
+                                ><h6 class="text-dark required">
+                                  Tình trạng đối tượng giám định:
                                 </h6></label
                               >
                               
@@ -500,7 +329,7 @@
                             <div class="row">
                               <div class="col-lg-6">
                                 <button type="submit" class="btn btn-primary mr-2" name="save">Cập nhật</button>
-                                <button type="submit" formaction="{{route('WordCreate')}}" class="btn btn-primary mr-2" name="download">Tải file</button>
+                                <button type="submit" formaction="{{route('WordEdit',$hoso->id)}}" class="btn btn-primary mr-2" name="download">Tải file</button>
                                 <button type="reset" class="btn btn-secondary">Cancel</button>
                               </div>														
                             </div>
