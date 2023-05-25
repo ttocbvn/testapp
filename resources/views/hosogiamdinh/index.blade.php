@@ -36,6 +36,7 @@
                             <table class="table table-row-dashed table-row-gray-300 gy-7">
                                 <thead>
                                     <tr class="fw-bolder fs-6 text-gray-800">
+                                       
                                         <th>Số Quyết định trưng cầu</th>
                                         <th>Ngày quyết định trưng cầu</th>
                                         <th>Người giao</th>
@@ -49,6 +50,7 @@
                                 <tbody>
                                   @foreach ($hosogd as $hs)
                                      <tr>
+                                    
                                         <td><a href="{{route('ho-so-giam-dinh.edit', $hs->id)}}"  rel="noopener noreferrer">{{$hs->soqd}}</td></a>
                                         <td>{{date('d/m/Y', strtotime($hs->ngayqd));}}</td>
                                         <td>{{$hs->nguoigiao}}</td>

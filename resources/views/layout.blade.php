@@ -356,7 +356,7 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="menu-bullet">
                           <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Thông tin tài khoản</span>
+                        <span class="menu-title">Danh sách tài khoản</span>
                       </a>
                     </div>
                   </div>

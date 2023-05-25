@@ -10,7 +10,7 @@
 								<!--begin::Page title-->
 								<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 									<!--begin::Title-->
-									<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Account Overview</h1>
+									<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Thông tin tài khoản</h1>
 									<!--end::Title-->
 									<!--begin::Separator-->
 									<span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -44,101 +44,8 @@
 								<!--end::Page title-->
 								<!--begin::Actions-->
 								<div class="d-flex align-items-center py-1">
-									<!--begin::Wrapper-->
-									<div class="me-4">
-										<!--begin::Menu-->
-										<a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-										<!--begin::Svg Icon | path: icons/duotone/Text/Filter.svg-->
-										<span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect x="0" y="0" width="24" height="24" />
-													<path d="M5,4 L19,4 C19.2761424,4 19.5,4.22385763 19.5,4.5 C19.5,4.60818511 19.4649111,4.71345191 19.4,4.8 L14,12 L14,20.190983 C14,20.4671254 13.7761424,20.690983 13.5,20.690983 C13.4223775,20.690983 13.3458209,20.6729105 13.2763932,20.6381966 L10,19 L10,12 L4.6,4.8 C4.43431458,4.5790861 4.4790861,4.26568542 4.7,4.1 C4.78654809,4.03508894 4.89181489,4 5,4 Z" fill="#000000" />
-												</g>
-											</svg>
-										</span>
-										<!--end::Svg Icon-->Filter</a>
-										<!--begin::Menu 1-->
-										<div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_610d482604522">
-											<!--begin::Header-->
-											<div class="px-7 py-5">
-												<div class="fs-5 text-dark fw-bolder">Filter Options</div>
-											</div>
-											<!--end::Header-->
-											<!--begin::Menu separator-->
-											<div class="separator border-gray-200"></div>
-											<!--end::Menu separator-->
-											<!--begin::Form-->
-											<div class="px-7 py-5">
-												<!--begin::Input group-->
-												<div class="mb-10">
-													<!--begin::Label-->
-													<label class="form-label fw-bold">Status:</label>
-													<!--end::Label-->
-													<!--begin::Input-->
-													<div>
-														<select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_610d482604522" data-allow-clear="true">
-															<option></option>
-															<option value="1">Approved</option>
-															<option value="2">Pending</option>
-															<option value="2">In Process</option>
-															<option value="2">Rejected</option>
-														</select>
-													</div>
-													<!--end::Input-->
-												</div>
-												<!--end::Input group-->
-												<!--begin::Input group-->
-												<div class="mb-10">
-													<!--begin::Label-->
-													<label class="form-label fw-bold">Member Type:</label>
-													<!--end::Label-->
-													<!--begin::Options-->
-													<div class="d-flex">
-														<!--begin::Options-->
-														<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-															<input class="form-check-input" type="checkbox" value="1" />
-															<span class="form-check-label">Author</span>
-														</label>
-														<!--end::Options-->
-														<!--begin::Options-->
-														<label class="form-check form-check-sm form-check-custom form-check-solid">
-															<input class="form-check-input" type="checkbox" value="2" checked="checked" />
-															<span class="form-check-label">Customer</span>
-														</label>
-														<!--end::Options-->
-													</div>
-													<!--end::Options-->
-												</div>
-												<!--end::Input group-->
-												<!--begin::Input group-->
-												<div class="mb-10">
-													<!--begin::Label-->
-													<label class="form-label fw-bold">Notifications:</label>
-													<!--end::Label-->
-													<!--begin::Switch-->
-													<div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-														<input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
-														<label class="form-check-label">Enabled</label>
-													</div>
-													<!--end::Switch-->
-												</div>
-												<!--end::Input group-->
-												<!--begin::Actions-->
-												<div class="d-flex justify-content-end">
-													<button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
-													<button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
-												</div>
-												<!--end::Actions-->
-											</div>
-											<!--end::Form-->
-										</div>
-										<!--end::Menu 1-->
-										<!--end::Menu-->
-									</div>
-									<!--end::Wrapper-->
-									<!--begin::Button-->
-									<a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
+									
+									<a href="{{route('thong-tin-tai-khoan.create')}}" class="btn btn-sm btn-primary" id="kt_toolbar_primary_button">Create</a>
 									<!--end::Button-->
 								</div>
 								<!--end::Actions-->
@@ -158,7 +65,11 @@
 											<!--begin: Pic-->
 											<div class="me-7 mb-4">
 												<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-													<img src="assets/media/avatars/150-26.jpg" alt="image" />
+													@if ($taikhoan->avatar != NULL)
+														<img src="{{ asset('uploads/avatar/' . $taikhoan->avatar) }}" alt="image" />
+													@else
+														<img src="{{asset('assets/media/avatars/blank.png')}}" alt="image" />
+													@endif													
 													<div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div>
 												</div>
 											</div>
@@ -171,7 +82,7 @@
 													<div class="d-flex flex-column">
 														<!--begin::Name-->
 														<div class="d-flex align-items-center mb-2">
-															<a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">Max Smith</a>
+															<a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$taikhoan->hoten}}</a>
 															<a href="#">
 																<!--begin::Svg Icon | path: icons/duotone/Design/Verified.svg-->
 																<span class="svg-icon svg-icon-1 svg-icon-primary">
@@ -182,7 +93,7 @@
 																</span>
 																<!--end::Svg Icon-->
 															</a>
-															<a href="#" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to Pro</a>
+															<a href="#" class="btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">{{$taikhoan->chucdanhtuphap}}</a>
 														</div>
 														<!--end::Name-->
 														<!--begin::Info-->
@@ -198,7 +109,7 @@
 																	</g>
 																</svg>
 															</span>
-															<!--end::Svg Icon-->Developer</a>
+															<!--end::Svg Icon-->{{$taikhoan->capbac}}</a>
 															<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
 															<!--begin::Svg Icon | path: icons/duotone/Map/Marker1.svg-->
 															<span class="svg-icon svg-icon-4 me-1">
@@ -209,7 +120,7 @@
 																	</g>
 																</svg>
 															</span>
-															<!--end::Svg Icon-->SF, Bay Area</a>
+															<!--end::Svg Icon-->{{$taikhoan->doicongtac}}</a>
 															<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
 															<!--begin::Svg Icon | path: icons/duotone/Communication/Mail-at.svg-->
 															<span class="svg-icon svg-icon-4 me-1">
@@ -224,108 +135,7 @@
 													<!--end::User-->
 													<!--begin::Actions-->
 													<div class="d-flex my-4">
-														<a href="#" class="btn btn-sm btn-light me-2" id="kt_user_follow_button">
-															<!--begin::Svg Icon | path: icons/duotone/Navigation/Double-check.svg-->
-															<span class="svg-icon svg-icon-3 d-none">
-																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																		<polygon points="0 0 24 0 24 24 0 24" />
-																		<path d="M9.26193932,16.6476484 C8.90425297,17.0684559 8.27315905,17.1196257 7.85235158,16.7619393 C7.43154411,16.404253 7.38037434,15.773159 7.73806068,15.3523516 L16.2380607,5.35235158 C16.6013618,4.92493855 17.2451015,4.87991302 17.6643638,5.25259068 L22.1643638,9.25259068 C22.5771466,9.6195087 22.6143273,10.2515811 22.2474093,10.6643638 C21.8804913,11.0771466 21.2484189,11.1143273 20.8356362,10.7474093 L17.0997854,7.42665306 L9.26193932,16.6476484 Z" fill="#000000" fill-rule="nonzero" opacity="0.5" transform="translate(14.999995, 11.000002) rotate(-180.000000) translate(-14.999995, -11.000002)" />
-																		<path d="M4.26193932,17.6476484 C3.90425297,18.0684559 3.27315905,18.1196257 2.85235158,17.7619393 C2.43154411,17.404253 2.38037434,16.773159 2.73806068,16.3523516 L11.2380607,6.35235158 C11.6013618,5.92493855 12.2451015,5.87991302 12.6643638,6.25259068 L17.1643638,10.2525907 C17.5771466,10.6195087 17.6143273,11.2515811 17.2474093,11.6643638 C16.8804913,12.0771466 16.2484189,12.1143273 15.8356362,11.7474093 L12.0997854,8.42665306 L4.26193932,17.6476484 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.999995, 12.000002) rotate(-180.000000) translate(-9.999995, -12.000002)" />
-																	</g>
-																</svg>
-															</span>
-															<!--end::Svg Icon-->
-															<!--begin::Indicator-->
-															<span class="indicator-label">Follow</span>
-															<span class="indicator-progress">Please wait...
-															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-															<!--end::Indicator-->
-														</a>
-														<a href="#" class="btn btn-sm btn-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_offer_a_deal">Hire Me</a>
-														<!--begin::Menu-->
-														<div class="me-0">
-															<button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-																<i class="bi bi-three-dots fs-3"></i>
-															</button>
-															<!--begin::Menu 3-->
-															<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-																<!--begin::Heading-->
-																<div class="menu-item px-3">
-																	<div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Payments</div>
-																</div>
-																<!--end::Heading-->
-																<!--begin::Menu item-->
-																<div class="menu-item px-3">
-																	<a href="#" class="menu-link px-3">Create Invoice</a>
-																</div>
-																<!--end::Menu item-->
-																<!--begin::Menu item-->
-																<div class="menu-item px-3">
-																	<a href="#" class="menu-link flex-stack px-3">Create Payment
-																	<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i></a>
-																</div>
-																<!--end::Menu item-->
-																<!--begin::Menu item-->
-																<div class="menu-item px-3">
-																	<a href="#" class="menu-link px-3">Generate Bill</a>
-																</div>
-																<!--end::Menu item-->
-																<!--begin::Menu item-->
-																<div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end" data-kt-menu-flip="bottom, top">
-																	<a href="#" class="menu-link px-3">
-																		<span class="menu-title">Subscription</span>
-																		<span class="menu-arrow"></span>
-																	</a>
-																	<!--begin::Menu sub-->
-																	<div class="menu-sub menu-sub-dropdown w-175px py-4">
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3">Plans</a>
-																		</div>
-																		<!--end::Menu item-->
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3">Billing</a>
-																		</div>
-																		<!--end::Menu item-->
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3">Statements</a>
-																		</div>
-																		<!--end::Menu item-->
-																		<!--begin::Menu separator-->
-																		<div class="separator my-2"></div>
-																		<!--end::Menu separator-->
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<div class="menu-content px-3">
-																				<!--begin::Switch-->
-																				<label class="form-check form-switch form-check-custom form-check-solid">
-																					<!--begin::Input-->
-																					<input class="form-check-input w-30px h-20px" type="checkbox" value="1" checked="checked" name="notifications" />
-																					<!--end::Input-->
-																					<!--end::Label-->
-																					<span class="form-check-label text-muted fs-6">Recuring</span>
-																					<!--end::Label-->
-																				</label>
-																				<!--end::Switch-->
-																			</div>
-																		</div>
-																		<!--end::Menu item-->
-																	</div>
-																	<!--end::Menu sub-->
-																</div>
-																<!--end::Menu item-->
-																<!--begin::Menu item-->
-																<div class="menu-item px-3 my-1">
-																	<a href="#" class="menu-link px-3">Settings</a>
-																</div>
-																<!--end::Menu item-->
-															</div>
-															<!--end::Menu 3-->
-														</div>
-														<!--end::Menu-->
+														
 													</div>
 													<!--end::Actions-->
 												</div>
@@ -431,7 +241,7 @@
 											<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap">
 												<!--begin::Nav item-->
 												<li class="nav-item">
-													<a class="nav-link text-active-primary me-6 active" href="../../demo1/dist/account/overview.html">Overview</a>
+													<a class="nav-link text-active-primary me-6 active" href="{{route('XemThongTinTaiKhoan',$taikhoan->id)}}">Thông tin chung</a>
 												</li>
 												<!--end::Nav item-->
 												<!--begin::Nav item-->
@@ -476,7 +286,7 @@
 									<div class="card-header cursor-pointer">
 										<!--begin::Card title-->
 										<div class="card-title m-0">
-											<h3 class="fw-bolder m-0">Profile Details</h3>
+											<h3 class="fw-bolder m-0">Thông tin chi tiết</h3>
 										</div>
 										<!--end::Card title-->
 										<!--begin::Action-->
@@ -489,37 +299,24 @@
 										<!--begin::Row-->
 										<div class="row mb-7">
 											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">Full Name</label>
+											<label class="col-lg-4 fw-bold text-muted">Họ và tên</label>
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8">
-												<span class="fw-bolder fs-6 text-gray-800">Max Smith</span>
+												<span class="fw-bolder fs-6 text-gray-800">{{$taikhoan->hoten}}</span>
 											</div>
 											<!--end::Col-->
 										</div>
-										<!--end::Row-->
+										<!--end::Row-->										
 										<!--begin::Input group-->
 										<div class="row mb-7">
 											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">Company</label>
-											<!--end::Label-->
-											<!--begin::Col-->
-											<div class="col-lg-8 fv-row">
-												<span class="fw-bold text-gray-800 fs-6">Keenthemes</span>
-											</div>
-											<!--end::Col-->
-										</div>
-										<!--end::Input group-->
-										<!--begin::Input group-->
-										<div class="row mb-7">
-											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">Contact Phone
-											<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i></label>
+											<label class="col-lg-4 fw-bold text-muted">Số điện thoại</label>
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8 d-flex align-items-center">
-												<span class="fw-bolder fs-6 text-gray-800 me-2">044 3276 454 935</span>
-												<span class="badge badge-success">Verified</span>
+												<span class="fw-bolder fs-6 text-gray-800 me-2">{{$taikhoan->sodienthoai}}</span>
+												<span class="badge badge-success">Đang sử dụng</span>
 											</div>
 											<!--end::Col-->
 										</div>
@@ -527,11 +324,11 @@
 										<!--begin::Input group-->
 										<div class="row mb-7">
 											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">Company Site</label>
+											<label class="col-lg-4 fw-bold text-muted">Đơn vị công tác</label>
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8">
-												<a href="#" class="fw-bold fs-6 text-gray-800 text-hover-primary">keenthemes.com</a>
+												<a href="#" class="fw-bold fs-6 text-gray-800 text-hover-primary">Đội {{$taikhoan->doicongtac}}, Phòng Kỹ thuật hình sự, Công an tỉnh Cao Bằng</a>
 											</div>
 											<!--end::Col-->
 										</div>
@@ -539,12 +336,12 @@
 										<!--begin::Input group-->
 										<div class="row mb-7">
 											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">Country
+											<label class="col-lg-4 fw-bold text-muted">Cấp bậc
 											<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Country of origination"></i></label>
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8">
-												<span class="fw-bolder fs-6 text-gray-800">Germany</span>
+												<span class="fw-bolder fs-6 text-gray-800">{{$taikhoan->capbac}}</span>
 											</div>
 											<!--end::Col-->
 										</div>
@@ -552,11 +349,23 @@
 										<!--begin::Input group-->
 										<div class="row mb-7">
 											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">Communication</label>
+											<label class="col-lg-4 fw-bold text-muted">Chức danh tư pháp</label>
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8">
-												<span class="fw-bolder fs-6 text-gray-800">Email, Phone</span>
+												<span class="fw-bolder fs-6 text-gray-800">{{$taikhoan->chucdanhtuphap}}</span>
+											</div>
+											<!--end::Col-->
+										</div>
+										<!--end::Input group-->
+										<!--begin::Input group-->
+										<div class="row mb-7">
+											<!--begin::Label-->
+											<label class="col-lg-4 fw-bold text-muted">Lĩnh vực giám định</label>
+											<!--end::Label-->
+											<!--begin::Col-->
+											<div class="col-lg-8">
+												<span class="fw-bolder fs-6 text-gray-800">{{$taikhoan->linhvucgiamdinh}}</span>
 											</div>
 											<!--end::Col-->
 										</div>
@@ -564,41 +373,39 @@
 										<!--begin::Input group-->
 										<div class="row mb-10">
 											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">Allow Changes</label>
+											<label class="col-lg-4 fw-bold text-muted">Số thẻ giám định</label>
 											<!--begin::Label-->
 											<!--begin::Label-->
 											<div class="col-lg-8">
-												<span class="fw-bold fs-6 text-gray-800">Yes</span>
+												@if ($taikhoan->sothegiamdinh != NULL)
+													<span class="fw-bold fs-6 text-gray-800">{{$taikhoan->sothegiamdinh}}, cấp ngày {{date('d/m/Y', strtotime($taikhoan->ngaycapthegiamdinh));}}</span>
+												@else
+													<span class="fw-bold fs-6 text-gray-800">Chưa được cấp</span>
+												@endif												
 											</div>
 											<!--begin::Label-->
 										</div>
 										<!--end::Input group-->
-										<!--begin::Notice-->
-										<div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
-											<!--begin::Icon-->
-											<!--begin::Svg Icon | path: icons/duotone/Code/Warning-1-circle.svg-->
-											<span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-													<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
-													<rect fill="#000000" x="11" y="7" width="2" height="8" rx="1" />
-													<rect fill="#000000" x="11" y="16" width="2" height="2" rx="1" />
-												</svg>
-											</span>
-											<!--end::Svg Icon-->
-											<!--end::Icon-->
-											<!--begin::Wrapper-->
-											<div class="d-flex flex-stack flex-grow-1">
-												<!--begin::Content-->
-												<div class="fw-bold">
-													<h4 class="text-gray-900 fw-bolder">We need your attention!</h4>
-													<div class="fs-6 text-gray-700">Your payment was declined. To start using tools, please
-													<a class="fw-bolder" href="../../demo1/dist/account/billing.html">Add Payment Method</a>.</div>
-												</div>
-												<!--end::Content-->
+										@if ($taikhoan->sothegiamdinh != NULL)
+										<div class="row mb-10">
+											<!--begin::Label-->
+											<label class="col-lg-4 fw-bold text-muted">Nơi cấp thẻ giám định</label>
+											<!--begin::Label-->
+											<!--begin::Label-->
+											<div class="col-lg-8">
+												@if ($taikhoan->sothegiamdinh != NULL)
+													<span class="fw-bold fs-6 text-gray-800">{{$taikhoan->noicapthegiamdinh}}</span>
+												@else
+													<span class="fw-bold fs-6 text-gray-800">Chưa được cấp</span>
+												@endif												
 											</div>
-											<!--end::Wrapper-->
+											<!--begin::Label-->
 										</div>
-										<!--end::Notice-->
+										@endif
+										
+										<!--end::Input group-->
+
+										
 									</div>
 									<!--end::Card body-->
 								</div>

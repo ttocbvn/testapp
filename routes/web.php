@@ -19,4 +19,4 @@ Route::post('ho-so-giam-dinh/files',[HoSoGiamDinhController::class, 'WordCreate'
 Route::put('ho-so-giam-dinh/files/{ho_so_giam_dinh}',[HoSoGiamDinhController::class, 'WordEdit'])->name('WordEdit');
 Route::resource('ho-so-giam-dinh', HoSoGiamDinhController::class);
 Route::resource('thong-tin-tai-khoan', TaiKhoanController::class);
-Route::get('dang-ky-tai-khoan',function(){ return view('taikhoan.dangkytaikhoan');})->name('DangKyTaiKhoan');
+Route::get('xem-thong-tin-tai-khoan/{id}',[TaiKhoanController::class,'XemThongTinTaiKhoan'])->name('XemThongTinTaiKhoan');

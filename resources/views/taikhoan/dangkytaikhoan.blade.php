@@ -24,7 +24,7 @@
                     <!--begin::Content-->
                     <div id="kt_account_profile_details" class="collapse show">
                         <!--begin::Form-->
-                        <form id="kt_account_profile_details_form" class="form" method="POST">
+                        <form id="kt_account_profile_details_form" class="form" method="POST" action="{{route('thong-tin-tai-khoan.store')}}" enctype="multipart/form-data">
                             @csrf
                             <!--begin::Card body-->
                             <div class="card-body border-top p-9">
@@ -37,10 +37,10 @@
                                     <div class="col-lg-8">
                                         <!--begin::Image input-->
                                         <div class="image-input image-input-outline" data-kt-image-input="true"
-                                            style="background-image: url(assets/media/avatars/blank.png)">
+                                            style="background-image: url({{asset('assets/media/avatars/blank.png')}})">
                                             <!--begin::Preview existing avatar-->
                                             <div class="image-input-wrapper w-125px h-125px"
-                                                style="background-image: url(assets/media/avatars/150-26.jpg)"></div>
+                                                style="background-image: url({{asset('assets/media/avatars/blank.png')}})"></div>
                                             <!--end::Preview existing avatar-->
                                             <!--begin::Label-->
                                             <label
@@ -75,6 +75,20 @@
                                         <!--begin::Hint-->
                                         <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
                                         <!--end::Hint-->
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Input group-->
+                                 <!--begin::Input group-->
+                                 <div class="row mb-6">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Họ và tên</label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" name="hoten"
+                                            class="form-control form-control-lg form-control-solid" placeholder="VD: Nguyễn Văn Nam"
+                                            value="{{ old('tentaikhoan') }}" />
                                     </div>
                                     <!--end::Col-->
                                 </div>
@@ -224,7 +238,7 @@
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
                                         <select class="form-select form-select-solid form-select-lg" id="exampleSelect1"
-                                            name="chucdanhtuphap">                                            
+                                            name="linhvucgiamdinh">                                            
                                             <option value="Giám định Kỹ thuật số và điện tử">Giám định Kỹ thuật số và điện tử</option>
                                             <option value="Giám định Kỹ thuật">Giám định Kỹ thuật</option>
                                             <option value="Giám định Tài liệu">Giám định Tài liệu</option>
@@ -297,9 +311,9 @@
                             <!--begin::Actions-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
                                 <button type="reset"
-                                    class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                    class="btn btn-light btn-active-light-primary me-2">Hủy</button>
                                 <button type="submit" class="btn btn-primary"
-                                    id="kt_account_profile_details_submit">Save Changes</button>
+                                    id="kt_account_profile_details_submit">Đăng ký</button>
                             </div>
                             <!--end::Actions-->
                         </form>
