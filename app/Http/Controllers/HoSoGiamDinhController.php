@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\HoSoGiamDinh;
 use Carbon\Carbon;
-
+use DB;
 
 class HoSoGiamDinhController extends Controller
 {
@@ -17,8 +17,9 @@ class HoSoGiamDinhController extends Controller
     public function index()
     {
         //
+        $title = "Danh sách hồ sơ giám định";
         $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->paginate(10);
-        return view('hosogiamdinh.index',compact('hosogd'));
+        return view('hosogiamdinh.index',compact('hosogd','title'));
     }
 
     /**
@@ -29,7 +30,8 @@ class HoSoGiamDinhController extends Controller
     public function create()
     {
         //
-        return view('hosogiamdinh.tiepnhan');
+        $title = "Tiếp nhận hồ sơ giám định";
+        return view('hosogiamdinh.tiepnhan',compact('title'));
     }
 
     /**
@@ -44,9 +46,9 @@ class HoSoGiamDinhController extends Controller
         $rules = [
             'soqd' => ['required','max:255'],
             'ngayqd' => ['required','date'],
-            'nguoigiao' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'nguoigiao' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
             'chucvunguoigiao' => ['required','in:Điều tra viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
-            'nguoinhan' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'nguoinhan' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
             'chucvunguoinhan' => ['required','in:Giám định viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
             'donvitrungcau' => ['required','in:Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng,Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng,
             Cơ quan Cảnh sát điều tra Công an huyện Hòa An,
@@ -58,7 +60,7 @@ class HoSoGiamDinhController extends Controller
             Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh,
             Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang,
             Cơ quan Cảnh sát điều tra Công an huyện Thạch An'],
-            'nguoikyqd' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'nguoikyqd' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
             'soluongmaugiamdinh' => ['required','numeric'],
             'linhvucgiamdinh' => ['required'],
             'tinhtrangdoituonggiamdinh' => ['required'],
@@ -134,8 +136,9 @@ class HoSoGiamDinhController extends Controller
     public function edit($id)
     {
         //
+        $title = "Cập nhật hồ sơ giám định";
         $hoso = HoSoGiamDinh::find($id);
-        return view('hosogiamdinh.suatiepnhan',compact('hoso'));
+        return view('hosogiamdinh.suatiepnhan',compact('hoso','title'));
     }
 
     /**
@@ -153,9 +156,9 @@ class HoSoGiamDinhController extends Controller
         $rules = [
             'soqd' => ['required','max:255'],
             'ngayqd' => ['required','date'],
-            'nguoigiao' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'nguoigiao' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
             'chucvunguoigiao' => ['required','in:Điều tra viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
-            'nguoinhan' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'nguoinhan' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
             'chucvunguoinhan' => ['required','in:Giám định viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
             'donvitrungcau' => ['required','in:Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng,Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng,
             Cơ quan Cảnh sát điều tra Công an huyện Hòa An,
@@ -167,11 +170,10 @@ class HoSoGiamDinhController extends Controller
             Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh,
             Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang,
             Cơ quan Cảnh sát điều tra Công an huyện Thạch An'],
-            'nguoikyqd' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'nguoikyqd' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
             'soluongmaugiamdinh' => ['required','numeric'],
             'linhvucgiamdinh' => ['required'],
-            'tinhtrangdoituonggiamdinh' => ['required'],
-        
+            'tinhtrangdoituonggiamdinh' => ['required'],        
     ];
         $messenger = [
             'soqd.required' => 'Bạn không được để trống số Quyết định',
@@ -193,10 +195,8 @@ class HoSoGiamDinhController extends Controller
             'soluongmaugiamdinh.required' => 'Không được để trống số lượng mẫu giám định',
             'soluongmaugiamdinh.numeric' => 'Số lượng mẫu phải ở định dạng số',
             'linhvucgiamdinh.required' => 'Bạn không được để trống lĩnh vực trưng cầu',
-            'tinhtrangdoituonggiamdinh.required' => 'Bạn không được để trống tình trạng đối tượng giám định',
-
-            
-        ];
+            'tinhtrangdoituonggiamdinh.required' => 'Bạn không được để trống tình trạng đối tượng giám định',           
+    ];
         $request->validate($rules,$messenger);
 
         $hoso = HoSoGiamDinh::find($id);
@@ -328,6 +328,18 @@ class HoSoGiamDinhController extends Controller
         $name = 'Giao nhan.docx';
         return response()->download($pathToSave, $name);
 
+    }
+
+    public function ThongKeHoSoGiamDinh(){
+        $title = "Danh sách hồ sơ giám định";
+        $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->get();
+        $count = $hosogd->count();
+        $linhvucgiamdinh = HoSoGiamDinh::select(DB::raw('count(linhvucgiamdinh) as tongso, linhvucgiamdinh'))    
+        ->groupBy('linhvucgiamdinh')    
+        ->get();
+        //dd($linhvucgiamdinh);
+        return view('hosogiamdinh.thongke',compact('hosogd','title','count','linhvucgiamdinh'));
+        
     }
 
 }

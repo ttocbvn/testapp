@@ -6,9 +6,8 @@
         <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
-            <div id="kt_content_container" class="container">
+            <div id="kt_content_container" class="container">            
                 <!--begin::Row-->
-
                 <div class="row gy-5 g-xl-12">
                     <!--begin::Col-->
                     <div class="col-xl-12">
@@ -20,7 +19,7 @@
                                     Giao nhận quyết định trưng cầu giám định
                                 </h3>
                                 @if ($errors->any())
-                                    <div class="alert alert-danger">
+                                    <div class="alert alert-danger p-2 card-toolbar">
                                         Vui lòng kiểm tra lại dữ liệu
                                     </div>
                                 @endif

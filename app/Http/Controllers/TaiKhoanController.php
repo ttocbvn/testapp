@@ -15,8 +15,9 @@ class TaiKhoanController extends Controller
     public function index()
     {
         //
+        $title = "Danh sách tài khoản";
         $taikhoan = TaiKhoan::orderBy('id', 'DESC')->paginate(10);
-        return view('taikhoan.index',compact('taikhoan'));        
+        return view('taikhoan.index',compact('taikhoan','title'));        
     }
 
     /**
@@ -27,7 +28,8 @@ class TaiKhoanController extends Controller
     public function create()
     {
         //
-        return view('taikhoan.dangkytaikhoan');
+        $title = "Đăng ký tài khoản";
+        return view('taikhoan.dangkytaikhoan',compact('title'));
     }
 
     /**

@@ -14,8 +14,11 @@ License: For each use you must have a valid license purchased only from above li
   <!--begin::Head-->
   <head>
     <title>
-      Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for
-      HTML, Vue, React, Angular &amp; Laravel by Keenthemes
+      @if (!empty($title))
+        {{$title}} - Phòng Kỹ thuật hình sự - Công an tỉnh Cao Bằng
+      @else
+        Phòng Kỹ thuật hình sự - Công an tỉnh Cao Bằng
+      @endif 
     </title>
     <meta
       name="description"
@@ -51,6 +54,9 @@ License: For each use you must have a valid license purchased only from above li
       rel="stylesheet"
       type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css"/>
+    
+
     <!--end::Global Stylesheets Bundle-->
   </head>
   <!--end::Head-->
@@ -814,6 +820,8 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('assets/js/custom/apps/chat/chat.js')}}"></script>
     <script src="{{ asset('assets/js/custom/modals/create-app.js')}}"></script>
     <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js')}}"></script>
+    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     @stack('custom-scripts')
     <!--end::Page Custom Javascript-->

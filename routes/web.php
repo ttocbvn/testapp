@@ -20,3 +20,4 @@ Route::put('ho-so-giam-dinh/files/{ho_so_giam_dinh}',[HoSoGiamDinhController::cl
 Route::resource('ho-so-giam-dinh', HoSoGiamDinhController::class);
 Route::resource('thong-tin-tai-khoan', TaiKhoanController::class);
 Route::get('xem-thong-tin-tai-khoan/{id}',[TaiKhoanController::class,'XemThongTinTaiKhoan'])->name('XemThongTinTaiKhoan');
+Route::get('thong-ke-ho-so-giam-dinh',[HoSoGiamDinhController::class,'ThongKeHoSoGiamDinh'])->name('ThongKeHoSoGiamDinh');
