@@ -33,16 +33,18 @@
                                 <!--begin::Wrapper-->
                                 <div class="d-flex flex-wrap">
                                     <!--begin::Chart-->
-													<div class="d-flex flex-center h-100px w-100px me-9 mb-5">
-														<canvas id="kt_chartjs_3"></canvas>
-													</div>
+													
+														
+													
 									<!--end::Chart-->
                                     <!--begin::Chart-->
                                     <div class="position-relative d-flex flex-center h-175px w-175px me-15 mb-7">
                                         <div
                                             class="position-absolute translate-middle start-50 top-50 d-flex flex-column flex-center">
+                                            <div class="d-flex flex-center h-150px w-150px me-9 mb-5"><canvas id="myChart"></canvas></div>
                                             <span class="fs-2qx fw-bolder">{{$count}}</span>
                                             <span class="fs-6 fw-bold text-gray-400">Tổng số vụ</span>
+                                            
                                         </div>                                        
                                     </div>
                                     <!--end::Chart-->
@@ -2816,53 +2818,28 @@
             $("#example").DataTable();
         </script>
         <script>
-            <script>
-                var ctx = document.getElementById('kt_chartjs_3');
-
-// Define colors
-var primaryColor = KTUtil.getCssVariableValue('--bs-primary');
-var dangerColor = KTUtil.getCssVariableValue('--bs-danger');
-var successColor = KTUtil.getCssVariableValue('--bs-success');
-var warningColor = KTUtil.getCssVariableValue('--bs-warning');
-var infoColor = KTUtil.getCssVariableValue('--bs-info');
-
-// Define fonts
-var fontFamily = KTUtil.getCssVariableValue('--bs-font-sans-serif');
-
-// Chart labels
-const labels = ['January', 'February', 'March'];
-
-// Chart data
-const data = {
-    labels: labels,
-    datasets: [
-        data: [300, 50, 100],
-    ]
-};
-
-// Chart config
-const config = {
-    type: 'pie',
-    data: data,
-    options: {
-        plugins: {
-            title: {
-                display: false,
-            }
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        @foreach ($linhvucgiamdinh as $item)
+                        '{{$item->linhvucgiamdinh}}',
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Số lượng',
+                        data: [@foreach ($linhvucgiamdinh as $item)
+                        '{{$item->tongso}}',
+                        @endforeach],                        
+                    }]
+                },
+                options: {
+                    plugins: {
+            legend: false // Hide legend
         },
-        responsive: true,
-    },
-    defaults:{
-        global: {
-            defaultFont: fontFamily
-        }
-    }
-};
-
-// Init ChartJS -- for more info, please visit: https://www.chartjs.org/docs/latest/
-var myChart = new Chart(ctx, config);
-  });
-</script>
-        </script>
+                }
+            });
+            </script>
     @endpush
 @endsection
