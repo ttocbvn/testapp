@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\HoSoGiamDinh;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class HoSoGiamDinhController extends Controller
 {
