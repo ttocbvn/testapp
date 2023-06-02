@@ -330,15 +330,28 @@ class HoSoGiamDinhController extends Controller
 
     }
 
-    public function ThongKeHoSoGiamDinh(){
+    public function ThongKeHoSoGiamDinh(Request $Request){
         $title = "Danh sách hồ sơ giám định";
-        $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->get();
-        $count = $hosogd->count();
-        $linhvucgiamdinh = HoSoGiamDinh::select(DB::raw('count(linhvucgiamdinh) as tongso, linhvucgiamdinh'))    
-        ->groupBy('linhvucgiamdinh')    
-        ->get();
-        //dd($linhvucgiamdinh);
-        return view('hosogiamdinh.thongke',compact('hosogd','title','count','linhvucgiamdinh'));
+
+        if ($Request->has('tungay') && $Request->has('denngay')) {
+            $tungay = $Request->tungay;
+            $denngay = $Request->denngay;
+            $hosogd = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->orderBy('id', 'DESC')->get();
+            $count = $hosogd->count();
+            $trangthaihoso = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
+            ->groupBy('trangthaihoso')    
+            ->get();
+        }      
+        else{
+            $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->get();
+            $count = $hosogd->count();
+            $trangthaihoso = HoSoGiamDinh::select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
+            ->groupBy('trangthaihoso')    
+            ->get();
+        }
+        
+        //dd($trangthaihoso);
+        return view('hosogiamdinh.thongke',compact('hosogd','title','count','trangthaihoso'));
         
     }
 
