@@ -305,6 +305,16 @@ License: For each use you must have a valid license purchased only from above li
                         <span class="menu-title">Quản lý hồ sơ</span>
                       </a>
                     </div>
+                    <div class="menu-item">
+                      <a
+                        class="menu-link"
+                        href="{{route('ThongKeHoSoGiamDinh')}}">
+                        <span class="menu-bullet">
+                          <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Thống kê hồ sơ</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <div class="menu-item">

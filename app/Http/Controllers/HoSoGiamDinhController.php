@@ -336,22 +336,27 @@ class HoSoGiamDinhController extends Controller
         if ($Request->has('tungay') && $Request->has('denngay')) {
             $tungay = $Request->tungay;
             $denngay = $Request->denngay;
-            $hosogd = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->orderBy('id', 'DESC')->get();
+            $hosogd = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->orderBy('ngaynhan', 'DESC')->get();
             $count = $hosogd->count();
             $trangthaihoso = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
             ->groupBy('trangthaihoso')    
             ->get();
+
+            $somaugiamdinh = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))->groupBy('linhvucgiamdinh')->get();
+            $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
         }      
         else{
-            $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->get();
+            $hosogd = HoSoGiamDinh::orderBy('ngaynhan', 'DESC')->get();
             $count = $hosogd->count();
             $trangthaihoso = HoSoGiamDinh::select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
             ->groupBy('trangthaihoso')    
             ->get();
+            $somaugiamdinh = HoSoGiamDinh::select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))->groupBy('linhvucgiamdinh')->get();
+            $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
         }
         
-        //dd($trangthaihoso);
-        return view('hosogiamdinh.thongke',compact('hosogd','title','count','trangthaihoso'));
+       // dd($tongsomaugiamdinh);
+        return view('hosogiamdinh.thongke',compact('hosogd','title','count','trangthaihoso','somaugiamdinh','tongsomaugiamdinh'));
         
     }
 
