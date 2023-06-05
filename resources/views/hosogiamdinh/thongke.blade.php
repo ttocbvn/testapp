@@ -17,7 +17,7 @@
                     <!-- Block -->
                     <form action="{{ route('ThongKeHoSoGiamDinh') }}" method="GET">
                         <div class="row p-5">
-                            
+
                             <!-- bắt đầu cột trái -->
                             <div class="p-2 col-lg-5 col-sm-12 rounded">
                                 <div class="p-2">
@@ -26,8 +26,8 @@
                                             Từ ngày:
                                         </h6>
                                     </label>
-                                    <input type="date" class="form-control" required
-                                        name="tungay" value="{{ request()->input('tungay', old('tungay')) }}" />
+                                    <input type="date" class="form-control" required name="tungay"
+                                        value="{{ request()->input('tungay', old('tungay')) }}" />
                                     @error('soqd')
                                         <p><span style="color: red">{{ $message }}</span></p>
                                     @enderror
@@ -42,8 +42,8 @@
                                             Đến ngày:
                                         </h6>
                                     </label>
-                                    <input class="form-control" type="date" name="denngay" value="{{ request()->input('denngay', old('denngay')) }}"
-                                        id="example-date-input" />
+                                    <input class="form-control" type="date" name="denngay" required
+                                        value="{{ request()->input('denngay', old('denngay')) }}" id="example-date-input" />
                                     @error('ngayqd')
                                         <p><span style="color: red">{{ $message }}</span></p>
                                     @enderror
@@ -63,7 +63,7 @@
             <!--end::Row-->
 
             <!--begin::Row-->
-            <div class="row gy-5 g-xl-12 mt-6 mt-xl-9 ">
+            <div class="row gy-5 g-xl-12 mt-6 mt-xl-9">
                 <!--begin::Col-->
                 <div class="col-lg-6">
                     <!--begin::Summary-->
@@ -88,42 +88,42 @@
                             <!--begin::Wrapper-->
                             <div class="d-flex flex-wrap">
                                 <!--begin::Chart-->
-                                    @if (!empty($trangthaihoso)) 
-                                <!--end::Chart-->
-                                <!--begin::Chart-->
-                                <div class="position-relative d-flex flex-center h-175px w-175px me-15 mb-7">                                    
-                                    <div
-                                        class="position-absolute translate-middle start-50 top-50 d-flex flex-column flex-center">
-                                        <div class="d-flex flex-center h-150px w-150px me-9 mb-5"><canvas
-                                                id="myChart"></canvas></div>
-                                        <span class="fs-2qx fw-bolder">{{ $count }}</span>
-                                        <span class="fs-6 fw-bold text-gray-400">Tổng số vụ</span>
+                                @if (!empty($trangthaihoso))
+                                    <!--end::Chart-->
+                                    <!--begin::Chart-->
+                                    <div class="position-relative d-flex flex-center h-175px w-175px me-15 mb-7">
+                                        <div
+                                            class="position-absolute translate-middle start-50 top-50 d-flex flex-column flex-center">
+                                            <div class="d-flex flex-center h-150px w-150px me-9 mb-5"><canvas
+                                                    id="myChart"></canvas></div>
+                                            <span class="fs-2qx fw-bolder" data-kt-countup="true" data-kt-countup-value="{{ $count }}">{{ $count }}</span>
+                                            <span class="fs-6 fw-bold text-gray-400">Tổng số vụ</span>
+
+                                        </div>
+                                    </div>
+                                    <!--end::Chart-->
+                                    <!--begin::Labels-->
+                                    <div class="d-flex flex-column justify-content-center flex-row-fluid pe-11 mb-5">
+                                        @php
+                                            $ran = ['bg-success', 'bg-danger', 'bg-gray-300', 'bg-primary'];
+                                        @endphp
+                                        <!--begin::Label-->
+                                        @foreach ($trangthaihoso as $item)
+                                            @php
+                                                $randomElement = $ran[array_rand($ran, 1)];
+                                            @endphp
+                                            <div class="d-flex fs-6 fw-bold align-items-center mb-3">
+                                                <div class="bullet {{ $randomElement }} me-3"></div>
+                                                <div class="text-gray-400">{{ $item->trangthaihoso }}</div>
+                                                <div class="ms-auto fw-bolder text-gray-700">{{ $item->tongso }}</div>
+                                            </div>
+                                        @endforeach
+                                        <!--end::Label-->
 
                                     </div>
-                                </div>
-                                <!--end::Chart-->
-                                <!--begin::Labels-->
-                                <div class="d-flex flex-column justify-content-center flex-row-fluid pe-11 mb-5">
-                                    @php
-                                        $ran = ['bg-success', 'bg-danger', 'bg-gray-300', 'bg-primary'];
-                                    @endphp
-                                    <!--begin::Label-->
-                                    @foreach ($trangthaihoso as $item)
-                                        @php
-                                            $randomElement = $ran[array_rand($ran, 1)];
-                                        @endphp
-                                        <div class="d-flex fs-6 fw-bold align-items-center mb-3">
-                                            <div class="bullet {{ $randomElement }} me-3"></div>
-                                            <div class="text-gray-400">{{ $item->trangthaihoso }}</div>
-                                            <div class="ms-auto fw-bolder text-gray-700">{{ $item->tongso }}</div>
-                                        </div>
-                                    @endforeach
-                                    <!--end::Label-->
-
-                                </div>
-                                <!--end::Labels-->
+                                    <!--end::Labels-->
                                 @else
-                                        Không có dữ liệu
+                                    Không có dữ liệu
                                 @endif
                             </div>
                             <!--end::Wrapper-->
@@ -157,44 +157,43 @@
                             <!--begin::Wrapper-->
                             <div class="d-flex flex-wrap">
                                 <!--begin::Chart-->
-                                    @if (!empty($somaugiamdinh)) 
-                                <!--end::Chart-->
-                                <!--begin::Chart-->
-                                <div class="position-relative d-flex flex-center h-175px w-175px me-15 mb-7">                                    
-                                    <div
-                                        class="position-absolute translate-middle start-50 top-50 d-flex flex-column flex-center">
+                                @if (!empty($somaugiamdinh))
+                                    <!--end::Chart-->
+                                    <!--begin::Chart-->
+                                    <div class="position-relative d-flex flex-center h-175px w-175px me-15 mb-7">
+                                        <div
+                                            class="position-absolute translate-middle start-50 top-50 d-flex flex-column flex-center">
                                             <div class="d-flex flex-center h-150px w-150px me-9 mb-5">
-                                                <canvas
-                                                id="myChart2"></canvas>
+                                                <canvas id="myChart2"></canvas>
                                             </div>
-                                        <span class="fs-2qx fw-bolder">{{ $tongsomaugiamdinh }}</span>
-                                        <span class="fs-6 fw-bold text-gray-400">Tổng số mẫu giám định</span>
+                                            <span class="fs-2qx fw-bolder" data-kt-countup="true" data-kt-countup-value="{{ $tongsomaugiamdinh }}">{{ $tongsomaugiamdinh }}</span>
+                                            <span class="fs-6 fw-bold text-gray-400">Tổng số mẫu giám định</span>
+
+                                        </div>
+                                    </div>
+                                    <!--end::Chart-->
+                                    <!--begin::Labels-->
+                                    <div class="d-flex flex-column justify-content-center flex-row-fluid pe-11 mb-5">
+                                        @php
+                                            $ran = ['bg-success', 'bg-danger', 'bg-gray-300', 'bg-primary'];
+                                        @endphp
+                                        <!--begin::Label-->
+                                        @foreach ($somaugiamdinh as $item)
+                                            @php
+                                                $randomElement = $ran[array_rand($ran, 1)];
+                                            @endphp
+                                            <div class="d-flex fs-6 fw-bold align-items-center mb-3">
+                                                <div class="bullet {{ $randomElement }} me-3"></div>
+                                                <div class="text-gray-400">{{ $item->linhvucgiamdinh }}</div>
+                                                <div class="ms-auto fw-bolder text-gray-700">{{ $item->soluong }}</div>
+                                            </div>
+                                        @endforeach
+                                        <!--end::Label-->
 
                                     </div>
-                                </div>
-                                <!--end::Chart-->
-                                <!--begin::Labels-->
-                                <div class="d-flex flex-column justify-content-center flex-row-fluid pe-11 mb-5">
-                                    @php
-                                        $ran = ['bg-success', 'bg-danger', 'bg-gray-300', 'bg-primary'];
-                                    @endphp
-                                    <!--begin::Label-->
-                                    @foreach ($somaugiamdinh as $item)
-                                        @php
-                                            $randomElement = $ran[array_rand($ran, 1)];
-                                        @endphp
-                                        <div class="d-flex fs-6 fw-bold align-items-center mb-3">
-                                            <div class="bullet {{ $randomElement }} me-3"></div>
-                                            <div class="text-gray-400">{{ $item->linhvucgiamdinh}}</div>
-                                            <div class="ms-auto fw-bolder text-gray-700">{{ $item->soluong }}</div>
-                                        </div>
-                                    @endforeach
-                                    <!--end::Label-->
-
-                                </div>
-                                <!--end::Labels-->
+                                    <!--end::Labels-->
                                 @else
-                                        Không có dữ liệu
+                                    Không có dữ liệu
                                 @endif
                             </div>
                             <!--end::Wrapper-->
@@ -204,9 +203,24 @@
                     <!--end::Summary-->
                 </div>
                 <!--end::Col-->
-               
+
             </div>
             <!--end::Row-->
+
+            <!--begin::Row-->
+
+            <!--end::Row-->
+            <div class="row gy-5 g-xl-12 card card-flush mt-xl-9">
+                <div class="card-header border-0">
+                    <h3 class="card-title fw-bolder text-dark">
+                        Đơn vị trưng cầu giám định
+                    </h3>
+                </div>
+               
+                    <canvas id="bieudodonvi"></canvas>
+                
+            </div>
+
             <!--begin::Row-->
             <div class="row gy-5 g-xl-12 card card-flush mt-6 mt-xl-9">
                 <!--begin::Col-->
@@ -237,8 +251,8 @@
 
                                         <th>Số Quyết định trưng cầu</th>
                                         <th>Ngày quyết định trưng cầu</th>
-                                        <th>Người giao</th>
-                                        <th>Người nhận</th>
+                                        <th class="min-w-100px">Người giao</th>
+                                        <th class="min-w-100px">Người nhận</th>
                                         <th>Đơn vị trưng cầu</th>
                                         <th>Lĩnh vực giám định</th>
                                         <th>Trạng thái hồ sơ</th>
@@ -257,11 +271,12 @@
                                             <td>{{ $hs->linhvucgiamdinh }}</td>
                                             <td>
                                                 @if ($hs->trangthaihoso == 'Đã tiếp nhận')
-                                                    <span
-                                                        class="badge badge-light-primary">{{ $hs->trangthaihoso }}</span>
+                                                    <span class="badge badge-light-primary">{{ $hs->trangthaihoso }}</span>
                                                 @elseif ($hs->trangthaihoso == 'Đã kết thúc')
+                                                    <span class="badge badge-light-success">{{ $hs->trangthaihoso }}</span>
+                                                @elseif ($hs->trangthaihoso == 'Đã từ chối')
                                                     <span
-                                                        class="badge badge-light-success">{{ $hs->trangthaihoso }}</span>
+                                                        class="badge badge-light-secondary">{{ $hs->trangthaihoso }}</span>
                                                 @else
                                                     <span class="badge badge-light-info">Không có thông tin</span>
                                                 @endif
@@ -293,18 +308,48 @@
     <!-- Phần cuối trang nội dung -->
     @push('custom-scripts')
         <script>
-            $("#example").DataTable();
+            $("#example").DataTable({
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Không có dữ liệu",
+                    "info": "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ kết quả",
+                    "infoEmpty": "Đang hiển thị 0 đến 0 trong tổng số 0 kết quả",
+                    "infoFiltered": "(Đã lọc trong tổng _MAX_ kết quả)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Hiển thị _MENU_ kết quả",
+                    "loadingRecords": "Đang tải...",
+                    "processing": "",
+                    "search": "Tìm kiếm:",
+                    "zeroRecords": "Không tìm thấy kết quả",
+                    "paginate": {
+                        "first": "Đầu tiên",
+                        "last": "Cuối cùng",
+                        "next": "Tiếp theo",
+                        "previous": "Quay lại"
+                    },
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    }
+                },
+                "dom": "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+            });
         </script>
-        {{-- <script>
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: [
-                        @foreach ($trangthaihoso as $item)
-                            '{{ $item->trangthaihoso }}',
-                        @endforeach
-                    ],
+        <script>
+            $(function() {
+                var ctx = document.getElementById("myChart").getContext('2d');
+                var data = {
                     datasets: [{
                         label: 'Số lượng',
                         data: [
@@ -312,25 +357,35 @@
                                 '{{ $item->tongso }}',
                             @endforeach
                         ],
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: false // Hide legend
-                    },
-                }
-            });
-        </script>
-        <script>            
-            const ctx = document.getElementById('myChart2').getContext('2d');
-            const myChart2 = new Chart(ctx, {
-                type: 'pie',
-                data: {
+
+                    }],
                     labels: [
-                        @foreach ($somaugiamdinh as $item)
-                            '{{ $item->linhvucgiamdinh  }}',
+                        @foreach ($trangthaihoso as $item)
+                            '{{ $item->trangthaihoso }}',
                         @endforeach
                     ],
+
+                };
+
+                var myDoughnutChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: {
+                        plugins: {
+                            legend: false // Hide legend
+                        },
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12
+                            }
+                        }
+                    }
+                });
+
+                var ctx_2 = document.getElementById("myChart2").getContext('2d');
+                var data_2 = {
                     datasets: [{
                         label: 'Số lượng',
                         data: [
@@ -338,82 +393,73 @@
                                 '{{ $item->soluong }}',
                             @endforeach
                         ],
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: false // Hide legend
-                    },
-                }
-            });
-        </script> --}}
 
-<script>
-    $(function () {
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var data = {
-            datasets: [{
-                label: 'Số lượng',
-                data: [@foreach ($trangthaihoso as $item)
+                    }],
+                    labels: [
+                        @foreach ($somaugiamdinh as $item)
+                            '{{ $item->linhvucgiamdinh }}',
+                        @endforeach
+                    ]
+                };
+                var myDoughnutChart_2 = new Chart(ctx_2, {
+                    type: 'doughnut',
+                    data: data_2,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false,
+                                position: 'right'
+                            }
+                        },
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12
+                            }
+                        }
+                    }
+                });
+
+                var ctx_3 = document.getElementById("bieudodonvi").getContext('2d');
+                var data_3 = {
+                    datasets: [{
+                        label: 'Số lượng',
+                        data: [
+                            @foreach ($donvitrungcau as $item)
                                 '{{ $item->tongso }}',
-                            @endforeach],
-                
-            }],
-            labels: [@foreach ($trangthaihoso as $item)
-                            '{{ $item->trangthaihoso }}',
-                        @endforeach
-            ],
-            
-        };
-        
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: data,
-            options: {
-                plugins: {
-                        legend: false // Hide legend
-                    },
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        boxWidth: 12
-                    }
-                }
-            }
-        });
+                            @endforeach
+                        ],
 
-        var ctx_2 = document.getElementById("myChart2").getContext('2d');
-        var data_2 = {
-            datasets: [{
-                data: [@foreach ($somaugiamdinh as $item)
-                            '{{ $item->soluong  }}',
-                        @endforeach],
-                
-            }],
-            labels: [@foreach ($somaugiamdinh as $item)
-                            '{{ $item->linhvucgiamdinh  }}',
+                    }],
+                    labels: [
+                        @foreach ($donvitrungcau as $item)
+                            '{{ $item->donvitrungcau }}',
                         @endforeach
-            ]
-        };
-        var myDoughnutChart_2 = new Chart(ctx_2, {
-            type: 'doughnut',
-            data: data_2,
-            options: {
-                plugins: {
-                        legend: false // Hide legend
+                    ]
+                };
+                var myDoughnutChart_3 = new Chart(ctx_3, {
+                    type: 'bar',
+                    data: data_3,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false,
+                                position: 'chartArea'
+                            }
+                        },
+                        responsive: true,
+                      //  maintainAspectRatio: false,
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 15
+                            }
+                        }
                     },
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        boxWidth: 12
-                    }
-                }
-            }
-        });
-    });
 
-</script>
+                });
+            });
+        </script>
     @endpush
 @endsection

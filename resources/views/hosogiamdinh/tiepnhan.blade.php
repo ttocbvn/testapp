@@ -342,7 +342,7 @@
                         "Times New Roman", 'Times', 'serif',
                     ],
                     toolbar: [
-                        'heading', 'bulletedList', 'numberedList', 'fontFamily', 'undo', 'redo'
+                        'heading', 'bulletedList', 'numberedList', 'fontFamily', 'undo', 'redo', 'indent'
                     ]
                 }
             })

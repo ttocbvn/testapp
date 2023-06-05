@@ -299,9 +299,15 @@
                                         @if ($hoso->trangthaihoso == "Đã tiếp nhận")
                                             <option selected value="Đã tiếp nhận">Đã tiếp nhận</option>
                                             <option value="Đã kết thúc">Đã kết thúc</option>
-                                        @else
+                                            <option value="Đã từ chối">Đã từ chối</option>
+                                        @elseif ($hoso->trangthaihoso == "Đã kết thúc")
                                             <option value="Đã tiếp nhận">Đã tiếp nhận</option>
                                             <option selected value="Đã kết thúc">Đã kết thúc</option>
+                                            <option value="Đã từ chối">Đã từ chối</option>
+                                        @else
+                                            <option value="Đã tiếp nhận">Đã tiếp nhận</option>
+                                            <option value="Đã kết thúc">Đã kết thúc</option>
+                                            <option selected value="Đã kết thúc">Đã từ chối</option>
                                         @endif
                                                                            
                                     </select>

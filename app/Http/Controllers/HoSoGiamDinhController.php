@@ -331,32 +331,37 @@ class HoSoGiamDinhController extends Controller
     }
 
     public function ThongKeHoSoGiamDinh(Request $Request){
-        $title = "Danh sách hồ sơ giám định";
+        $title = "Thống kê hồ sơ giám định";
 
         if ($Request->has('tungay') && $Request->has('denngay')) {
             $tungay = $Request->tungay;
             $denngay = $Request->denngay;
-            $hosogd = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->orderBy('ngaynhan', 'DESC')->get();
+            $hosogd = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->orderBy('id', 'DESC')->get();
             $count = $hosogd->count();
             $trangthaihoso = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
             ->groupBy('trangthaihoso')    
             ->get();
-
             $somaugiamdinh = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))->groupBy('linhvucgiamdinh')->get();
             $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
+            $donvitrungcau = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('count(donvitrungcau) as tongso, donvitrungcau'))    
+            ->groupBy('donvitrungcau')    
+            ->get();
         }      
         else{
-            $hosogd = HoSoGiamDinh::orderBy('ngaynhan', 'DESC')->get();
+            $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->get();
             $count = $hosogd->count();
             $trangthaihoso = HoSoGiamDinh::select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
             ->groupBy('trangthaihoso')    
             ->get();
             $somaugiamdinh = HoSoGiamDinh::select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))->groupBy('linhvucgiamdinh')->get();
             $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
+            $donvitrungcau = HoSoGiamDinh::select(DB::raw('count(donvitrungcau) as tongso, donvitrungcau'))    
+            ->groupBy('donvitrungcau')    
+            ->get();
         }
         
-       // dd($tongsomaugiamdinh);
-        return view('hosogiamdinh.thongke',compact('hosogd','title','count','trangthaihoso','somaugiamdinh','tongsomaugiamdinh'));
+       // dd($donvitrungcau);
+        return view('hosogiamdinh.thongke',compact('hosogd','title','count','trangthaihoso','somaugiamdinh','tongsomaugiamdinh','donvitrungcau'));
         
     }
 

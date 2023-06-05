@@ -60,7 +60,9 @@
                                         <td>@if ($hs->trangthaihoso == 'Đã tiếp nhận')
                                             <span class="badge badge-light-primary">{{$hs->trangthaihoso}}</span>
                                         @elseif ($hs->trangthaihoso == 'Đã kết thúc')
-                                        <span class="badge badge-light-success">{{$hs->trangthaihoso}}</span>
+                                          <span class="badge badge-light-success">{{$hs->trangthaihoso}}</span>
+                                        @elseif ($hs->trangthaihoso == 'Đã từ chối')
+                                          <span class="badge badge-light-secondary">{{ $hs->trangthaihoso }}</span>
                                         @else
                                         <span class="badge badge-light-info">Không có thông tin</span>
                                         @endif
