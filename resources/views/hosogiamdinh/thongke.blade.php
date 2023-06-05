@@ -72,7 +72,7 @@
                         <div class="card-header mt-6">
                             <!--begin::Card title-->
                             <div class="card-title flex-column">
-                                <h3 class="fw-bolder mb-1">Tổng số vụ giám định</h3>
+                                <h3 class="fw-bolder mb-1">Số lượng vụ giám định</h3>
 
                             </div>
                             <!--end::Card title-->
@@ -141,7 +141,7 @@
                         <div class="card-header mt-6">
                             <!--begin::Card title-->
                             <div class="card-title flex-column">
-                                <h3 class="fw-bolder mb-1">Tổng số mẫu giám định</h3>
+                                <h3 class="fw-bolder mb-1">Số lượng mẫu giám định</h3>
 
                             </div>
                             <!--end::Card title-->
