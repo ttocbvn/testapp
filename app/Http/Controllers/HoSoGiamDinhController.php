@@ -324,6 +324,9 @@ class HoSoGiamDinhController extends Controller
                 ->groupBy('linhvucgiamdinh')
                 ->get();
             $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
+            $donvitrungcau = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('count(donvitrungcau) as tongso, donvitrungcau'))    
+            ->groupBy('donvitrungcau')    
+            ->get();
         } else {
             $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->get();
             $count = $hosogd->count();
@@ -334,9 +337,12 @@ class HoSoGiamDinhController extends Controller
                 ->groupBy('linhvucgiamdinh')
                 ->get();
             $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
+            $donvitrungcau = HoSoGiamDinh::select(DB::raw('count(donvitrungcau) as tongso, donvitrungcau'))    
+            ->groupBy('donvitrungcau')    
+            ->get();
         }
 
         // dd($hosogd);
-        return view('hosogiamdinh.thongke', compact('hosogd', 'title', 'count', 'trangthaihoso', 'somaugiamdinh', 'tongsomaugiamdinh'));
+        return view('hosogiamdinh.thongke', compact('hosogd', 'title', 'count', 'trangthaihoso', 'somaugiamdinh', 'tongsomaugiamdinh','donvitrungcau'));
     }
 }
