@@ -96,7 +96,8 @@
                                             class="position-absolute translate-middle start-50 top-50 d-flex flex-column flex-center">
                                             <div class="d-flex flex-center h-150px w-150px me-9 mb-5"><canvas
                                                     id="myChart"></canvas></div>
-                                            <span class="fs-2qx fw-bolder" data-kt-countup="true" data-kt-countup-value="{{ $count }}">{{ $count }}</span>
+                                            <span class="fs-2qx fw-bolder" data-kt-countup="true"
+                                                data-kt-countup-value="{{ $count }}">{{ $count }}</span>
                                             <span class="fs-6 fw-bold text-gray-400">Tổng số vụ</span>
 
                                         </div>
@@ -166,7 +167,8 @@
                                             <div class="d-flex flex-center h-150px w-150px me-9 mb-5">
                                                 <canvas id="myChart2"></canvas>
                                             </div>
-                                            <span class="fs-2qx fw-bolder" data-kt-countup="true" data-kt-countup-value="{{ $tongsomaugiamdinh }}">{{ $tongsomaugiamdinh }}</span>
+                                            <span class="fs-2qx fw-bolder" data-kt-countup="true"
+                                                data-kt-countup-value="{{ $tongsomaugiamdinh }}">{{ $tongsomaugiamdinh }}</span>
                                             <span class="fs-6 fw-bold text-gray-400">Tổng số mẫu giám định</span>
 
                                         </div>
@@ -216,9 +218,9 @@
                         Đơn vị trưng cầu giám định
                     </h3>
                 </div>
-               
-                    <canvas id="bieudodonvi"></canvas>
-                
+
+                <canvas id="bieudodonvi"></canvas>
+
             </div>
 
             <!--begin::Row-->
@@ -271,9 +273,11 @@
                                             <td>{{ $hs->linhvucgiamdinh }}</td>
                                             <td>
                                                 @if ($hs->trangthaihoso == 'Đã tiếp nhận')
-                                                    <span class="badge badge-light-primary">{{ $hs->trangthaihoso }}</span>
+                                                    <span
+                                                        class="badge badge-light-primary">{{ $hs->trangthaihoso }}</span>
                                                 @elseif ($hs->trangthaihoso == 'Đã kết thúc')
-                                                    <span class="badge badge-light-success">{{ $hs->trangthaihoso }}</span>
+                                                    <span
+                                                        class="badge badge-light-success">{{ $hs->trangthaihoso }}</span>
                                                 @elseif ($hs->trangthaihoso == 'Đã từ chối')
                                                     <span
                                                         class="badge badge-light-secondary">{{ $hs->trangthaihoso }}</span>
@@ -434,7 +438,7 @@
                     }],
                     labels: [
                         @foreach ($donvitrungcau as $item)
-                            '{{ $item->donvitrungcau }}',
+                            '{{ str_replace('Cơ quan Cảnh sát điều tra', '', $item->donvitrungcau) }}',
                         @endforeach
                     ]
                 };
@@ -449,15 +453,23 @@
                             }
                         },
                         responsive: true,
-                      //  maintainAspectRatio: false,
+                        //  maintainAspectRatio: false,
                         legend: {
                             position: 'bottom',
                             labels: {
                                 boxWidth: 15
                             }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    font: {
+                                        size: 10,
+                                    }
+                                }
+                            }
                         }
                     },
-
                 });
             });
         </script>
