@@ -17,9 +17,9 @@ class HoSoGiamDinhController extends Controller
     public function index()
     {
         //
-        $title = "Danh sách hồ sơ giám định";
+        $title = 'Danh sách hồ sơ giám định';
         $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->paginate(10);
-        return view('hosogiamdinh.index',compact('hosogd','title'));
+        return view('hosogiamdinh.index', compact('hosogd', 'title'));
     }
 
     /**
@@ -30,8 +30,8 @@ class HoSoGiamDinhController extends Controller
     public function create()
     {
         //
-        $title = "Tiếp nhận hồ sơ giám định";
-        return view('hosogiamdinh.tiepnhan',compact('title'));
+        $title = 'Tiếp nhận hồ sơ giám định';
+        return view('hosogiamdinh.tiepnhan', compact('title'));
     }
 
     /**
@@ -44,28 +44,18 @@ class HoSoGiamDinhController extends Controller
     {
         //Validation thông tin điền form
         $rules = [
-            'soqd' => ['required','max:255'],
-            'ngayqd' => ['required','date'],
-            'nguoigiao' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
-            'chucvunguoigiao' => ['required','in:Điều tra viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
-            'nguoinhan' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
-            'chucvunguoinhan' => ['required','in:Giám định viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
-            'donvitrungcau' => ['required','in:Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng,Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng,
-            Cơ quan Cảnh sát điều tra Công an huyện Hòa An,
-            Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng,
-            Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình,
-            Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc,
-            Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm,
-            Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa,
-            Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh,
-            Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang,
-            Cơ quan Cảnh sát điều tra Công an huyện Thạch An'],
-            'nguoikyqd' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
-            'soluongmaugiamdinh' => ['required','numeric'],
+            'soqd' => ['required', 'max:255'],
+            'ngayqd' => ['required', 'date'],
+            'nguoigiao' => ['required', 'regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'chucvunguoigiao' => ['required', 'in:Điều tra viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
+            'nguoinhan' => ['required', 'regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'chucvunguoinhan' => ['required', 'in:Giám định viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
+            'donvitrungcau' => ['required','in:Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng,Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng,Cơ quan Cảnh sát điều tra Công an huyện Hòa An,Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng,Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình,Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc,Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm,Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa,Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh,Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang,Cơ quan Cảnh sát điều tra Công an huyện Thạch An'],
+            'nguoikyqd' => ['required', 'regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'soluongmaugiamdinh' => ['required', 'numeric'],
             'linhvucgiamdinh' => ['required'],
             'tinhtrangdoituonggiamdinh' => ['required'],
-        
-    ];
+        ];
         $messenger = [
             'soqd.required' => 'Bạn không được để trống số Quyết định',
             'soqd.max' => 'Số quyết định không được nhiều hơn :max ký tự',
@@ -87,13 +77,8 @@ class HoSoGiamDinhController extends Controller
             'soluongmaugiamdinh.numeric' => 'Số lượng mẫu phải ở định dạng số',
             'linhvucgiamdinh.required' => 'Bạn không được để trống lĩnh vực trưng cầu',
             'tinhtrangdoituonggiamdinh.required' => 'Bạn không được để trống tình trạng đối tượng giám định',
-
-            
         ];
-        $request->validate($rules,$messenger);
-
-
-
+        $request->validate($rules, $messenger);
 
         $hoso = new HoSoGiamDinh();
         $hoso->soqd = $request->soqd;
@@ -111,9 +96,9 @@ class HoSoGiamDinhController extends Controller
         $mytime = Carbon::now();
         $hoso->ngaynhan = $mytime;
         $hoso->save();
-        return redirect()->route('ho-so-giam-dinh.index')->with('status','Thêm thành công');
-        
-
+        return redirect()
+            ->route('ho-so-giam-dinh.index')
+            ->with('status', 'Thêm thành công');
     }
 
     /**
@@ -136,9 +121,9 @@ class HoSoGiamDinhController extends Controller
     public function edit($id)
     {
         //
-        $title = "Cập nhật hồ sơ giám định";
+        $title = 'Cập nhật hồ sơ giám định';
         $hoso = HoSoGiamDinh::find($id);
-        return view('hosogiamdinh.suatiepnhan',compact('hoso','title'));
+        return view('hosogiamdinh.suatiepnhan', compact('hoso', 'title'));
     }
 
     /**
@@ -154,27 +139,18 @@ class HoSoGiamDinhController extends Controller
 
         //Validation thông tin điền form
         $rules = [
-            'soqd' => ['required','max:255'],
-            'ngayqd' => ['required','date'],
-            'nguoigiao' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
-            'chucvunguoigiao' => ['required','in:Điều tra viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
-            'nguoinhan' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
-            'chucvunguoinhan' => ['required','in:Giám định viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
-            'donvitrungcau' => ['required','in:Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng,Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng,
-            Cơ quan Cảnh sát điều tra Công an huyện Hòa An,
-            Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng,
-            Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình,
-            Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc,
-            Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm,
-            Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa,
-            Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh,
-            Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang,
-            Cơ quan Cảnh sát điều tra Công an huyện Thạch An'],
-            'nguoikyqd' => ['required','regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
-            'soluongmaugiamdinh' => ['required','numeric'],
+            'soqd' => ['required', 'max:255'],
+            'ngayqd' => ['required', 'date'],
+            'nguoigiao' => ['required', 'regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'chucvunguoigiao' => ['required', 'in:Điều tra viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
+            'nguoinhan' => ['required', 'regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'chucvunguoinhan' => ['required', 'in:Giám định viên,Cán bộ,Phó đội trưởng,Đội trưởng,Phó trưởng phòng,Trưởng phòng'],
+            'donvitrungcau' => ['required','in:Cơ quan Cảnh sát điều tra Công an tỉnh Cao Bằng,Cơ quan Cảnh sát điều tra Công an thành phố Cao Bằng,Cơ quan Cảnh sát điều tra Công an huyện Hòa An,Cơ quan Cảnh sát điều tra Công an huyện Hà Quảng,Cơ quan Cảnh sát điều tra Công an huyện Nguyên Bình,Cơ quan Cảnh sát điều tra Công an huyện Bảo Lạc,Cơ quan Cảnh sát điều tra Công an huyện Bảo Lâm,Cơ quan Cảnh sát điều tra Công an huyện Quảng Hòa,Cơ quan Cảnh sát điều tra Công an huyện Trùng Khánh,Cơ quan Cảnh sát điều tra Công an huyện Hạ Lang,Cơ quan Cảnh sát điều tra Công an huyện Thạch An'],
+            'nguoikyqd' => ['required', 'regex:/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s ]+$/'],
+            'soluongmaugiamdinh' => ['required', 'numeric'],
             'linhvucgiamdinh' => ['required'],
-            'tinhtrangdoituonggiamdinh' => ['required'],        
-    ];
+            'tinhtrangdoituonggiamdinh' => ['required'],
+        ];
         $messenger = [
             'soqd.required' => 'Bạn không được để trống số Quyết định',
             'soqd.max' => 'Số quyết định không được nhiều hơn :max ký tự',
@@ -195,9 +171,9 @@ class HoSoGiamDinhController extends Controller
             'soluongmaugiamdinh.required' => 'Không được để trống số lượng mẫu giám định',
             'soluongmaugiamdinh.numeric' => 'Số lượng mẫu phải ở định dạng số',
             'linhvucgiamdinh.required' => 'Bạn không được để trống lĩnh vực trưng cầu',
-            'tinhtrangdoituonggiamdinh.required' => 'Bạn không được để trống tình trạng đối tượng giám định',           
-    ];
-        $request->validate($rules,$messenger);
+            'tinhtrangdoituonggiamdinh.required' => 'Bạn không được để trống tình trạng đối tượng giám định',
+        ];
+        $request->validate($rules, $messenger);
 
         $hoso = HoSoGiamDinh::find($id);
         $hoso->soqd = $request->soqd;
@@ -215,7 +191,9 @@ class HoSoGiamDinhController extends Controller
         // $mytime = Carbon::now();
         // $hoso->ngaynhan = $mytime;
         $hoso->save();
-        return redirect()->route('ho-so-giam-dinh.index')->with('status','Cập nhật thành công');
+        return redirect()
+            ->route('ho-so-giam-dinh.index')
+            ->with('status', 'Cập nhật thành công');
     }
 
     /**
@@ -231,21 +209,19 @@ class HoSoGiamDinhController extends Controller
 
     public function WordCreate(Request $request)
     {
-       
-       
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $giohientai = date('H'); 
+        $giohientai = date('H');
         $phuthientai = date('i');
-        $phutketthuc = $phuthientai+15;
-        if($phutketthuc>60){
+        $phutketthuc = $phuthientai + 15;
+        if ($phutketthuc > 60) {
             $phutketthuc = $phutketthuc - 10;
-        } 
-        $ngayhientai = date('d'); 
-        $thanghientai = date('m'); 
-        $namhientai = date('Y'); 
+        }
+        $ngayhientai = date('d');
+        $thanghientai = date('m');
+        $namhientai = date('Y');
         $soqd = $request->soqd;
-        $date=date_create($request->ngayqd);
-        $ngayqd= date_format($date,'d/m/Y');        
+        $date = date_create($request->ngayqd);
+        $ngayqd = date_format($date, 'd/m/Y');
         $donvitrungcau = $request->donvitrungcau;
         $nguoigiao = $request->nguoigiao;
         $nguoinhan = $request->nguoinhan;
@@ -267,36 +243,34 @@ class HoSoGiamDinhController extends Controller
         $templateProcessor->setValue('chucvunguoigiao', $chucvunguoigiao);
         $templateProcessor->setValue('nguoinhan', $nguoinhan);
         $templateProcessor->setValue('chucvunguoinhan', $chucvunguoinhan);
-      //  $templateProcessor->setValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh);
-        $templateProcessor->setValue('phutketthuc', $phutketthuc);        
-        $templateProcessor->setHtmlBlockValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh); 
-        //tạo fie mới       
+        //  $templateProcessor->setValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh);
+        $templateProcessor->setValue('phutketthuc', $phutketthuc);
+        $templateProcessor->setHtmlBlockValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh);
+        //tạo fie mới
         $pathToSave = 'ketqua.docx';
         $templateProcessor->saveAs($pathToSave);
-        
+
         $name = 'Giao nhan.docx';
         return response()->download($pathToSave, $name);
-
     }
 
     public function WordEdit(Request $request, $id)
     {
-       
         $hoso = HoSoGiamDinh::find($id);
         $ngaynhan = date_create($hoso->ngaynhan);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $giohientai = date('H'); 
+        $giohientai = date('H');
         $phuthientai = date('i');
-        $phutketthuc = $phuthientai+15;
-        if($phutketthuc>60){
+        $phutketthuc = $phuthientai + 15;
+        if ($phutketthuc > 60) {
             $phutketthuc = $phutketthuc - 10;
-        } 
-        $ngayhientai = date_format($ngaynhan,"d");       
-        $thanghientai = date_format($ngaynhan,"m"); 
-        $namhientai = date_format($ngaynhan,"Y");
+        }
+        $ngayhientai = date_format($ngaynhan, 'd');
+        $thanghientai = date_format($ngaynhan, 'm');
+        $namhientai = date_format($ngaynhan, 'Y');
         $soqd = $request->soqd;
-        $date=date_create($request->ngayqd);
-        $ngayqd= date_format($date,'d/m/Y');        
+        $date = date_create($request->ngayqd);
+        $ngayqd = date_format($date, 'd/m/Y');
         $donvitrungcau = $request->donvitrungcau;
         $nguoigiao = $request->nguoigiao;
         $nguoinhan = $request->nguoinhan;
@@ -318,51 +292,51 @@ class HoSoGiamDinhController extends Controller
         $templateProcessor->setValue('chucvunguoigiao', $chucvunguoigiao);
         $templateProcessor->setValue('nguoinhan', $nguoinhan);
         $templateProcessor->setValue('chucvunguoinhan', $chucvunguoinhan);
-      //  $templateProcessor->setValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh);
-        $templateProcessor->setValue('phutketthuc', $phutketthuc);        
-        $templateProcessor->setHtmlBlockValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh); 
-        //tạo fie mới       
+        //  $templateProcessor->setValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh);
+        $templateProcessor->setValue('phutketthuc', $phutketthuc);
+        $templateProcessor->setHtmlBlockValue('tinhtrangdoituonggiamdinh', $tinhtrangdoituonggiamdinh);
+        //tạo fie mới
         $pathToSave = 'ketqua.docx';
         $templateProcessor->saveAs($pathToSave);
-        
+
         $name = 'Giao nhan.docx';
         return response()->download($pathToSave, $name);
-
     }
 
-    public function ThongKeHoSoGiamDinh(Request $Request){
-        $title = "Thống kê hồ sơ giám định";
+    public function ThongKeHoSoGiamDinh(Request $Request)
+    {
+        $title = 'Thống kê hồ sơ giám định';
 
         if ($Request->has('tungay') && $Request->has('denngay')) {
             $tungay = $Request->tungay;
             $denngay = $Request->denngay;
-            $hosogd = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->orderBy('id', 'DESC')->get();
+            $hosogd = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])
+                ->orderBy('id', 'DESC')
+                ->get();
             $count = $hosogd->count();
-            $trangthaihoso = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
-            ->groupBy('trangthaihoso')    
-            ->get();
-            $somaugiamdinh = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))->groupBy('linhvucgiamdinh')->get();
+            $trangthaihoso = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])
+                ->select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))
+                ->groupBy('trangthaihoso')
+                ->get();
+
+            $somaugiamdinh = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])
+                ->select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))
+                ->groupBy('linhvucgiamdinh')
+                ->get();
             $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
-            $donvitrungcau = HoSoGiamDinh::whereBetween('ngaynhan', [$tungay, $denngay])->select(DB::raw('count(donvitrungcau) as tongso, donvitrungcau'))    
-            ->groupBy('donvitrungcau')    
-            ->get();
-        }      
-        else{
+        } else {
             $hosogd = HoSoGiamDinh::orderBy('id', 'DESC')->get();
             $count = $hosogd->count();
-            $trangthaihoso = HoSoGiamDinh::select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))    
-            ->groupBy('trangthaihoso')    
-            ->get();
-            $somaugiamdinh = HoSoGiamDinh::select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))->groupBy('linhvucgiamdinh')->get();
+            $trangthaihoso = HoSoGiamDinh::select(DB::raw('count(trangthaihoso) as tongso, trangthaihoso'))
+                ->groupBy('trangthaihoso')
+                ->get();
+            $somaugiamdinh = HoSoGiamDinh::select(DB::raw('SUM(soluongmaugiamdinh) as soluong, linhvucgiamdinh'))
+                ->groupBy('linhvucgiamdinh')
+                ->get();
             $tongsomaugiamdinh = $hosogd->sum('soluongmaugiamdinh');
-            $donvitrungcau = HoSoGiamDinh::select(DB::raw('count(donvitrungcau) as tongso, donvitrungcau'))    
-            ->groupBy('donvitrungcau')    
-            ->get();
         }
-        
-       // dd($donvitrungcau);
-        return view('hosogiamdinh.thongke',compact('hosogd','title','count','trangthaihoso','somaugiamdinh','tongsomaugiamdinh','donvitrungcau'));
-        
-    }
 
+        // dd($hosogd);
+        return view('hosogiamdinh.thongke', compact('hosogd', 'title', 'count', 'trangthaihoso', 'somaugiamdinh', 'tongsomaugiamdinh'));
+    }
 }
